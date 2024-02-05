@@ -1,0 +1,12 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+  <div class="home-container">
+    <h1>Welcome to the Home Page</h1>
+    <nav class="navbar">
+      <a class="nav-item" href="{% url 'register' %}">Sign Up</a>
+      <a class="nav-item" href="{% url 'login' %}">Sign In</a>
+      <a class="nav-item" href="{% url 'profile-view' %}">Profile</a>
+    </nav>
+  </div>
+{% endblock %}

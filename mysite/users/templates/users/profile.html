@@ -1,0 +1,109 @@
+{% extends 'users/base.html' %}
+{% block content %}
+{{ instance }}
+<div>
+    <h2>Update Profile</h2>
+    <form method="POST", action="{% url 'profile-view' %}">
+        {% csrf_token %}
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" required>
+        <br>
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" required>
+        <br>
+        <label for="profile_pic">Update profile picture:</label>
+        <input type="file" name="profile_pic" accept="image/*" required>
+        <br>
+        <label for="address">Address</label>
+        <input type="text" name="address" required>
+        <br>
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" required>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<hr>
+<div class="user-profile">
+    <h1>Profile Details</h1>
+    <div>
+        <img src="{{ user.profile.profile_pic.url}}">
+    </div>
+    <br>
+    <p>Firstname: {{user.profile.first_name}}</p>
+    <p>Lastname: {{user.profile.last_name}} </p>
+    <p>Email: {{user.email}} </p>
+    <p>Address: {{user.profile.address}} </p>
+    <p>Phone: {{user.profile.phone}} </p>
+</div>
+<br>
+<hr>
+<br>
+<div>
+    <h2>Find Your Favourite Pet</h2>
+    <h1>Do you want to sell a pet?</h1>
+    <form method="post" action="#">
+        {% csrf_token %}
+
+        <label for="name">Pet Name:</label>
+        <input type="text" name="name" required>
+        <br>
+
+        <label for="image">Image:</label>
+        <input type="file" name="image" accept="image/*" required>
+        <br>
+
+        <label for="age">Age:</label>
+        <input type="number" name="age" required>
+        <br>
+
+        <label for="gender">Gender:</label>
+        <input type="text" name="gender" required>
+        <br>
+
+        <label for="specie">Species:</label>
+        <input type="text" name="specie" required>
+        <br>
+
+        <label for="breed">Breed:</label>
+        <input type="text" name="breed" required>
+        <br>
+
+        <label for="description">Description:</label>
+        <textarea name="description" rows="4" required></textarea>
+        <br>
+
+        <label for="price">Price:</label>
+        <input type="number" name="price" required>
+        <br>
+
+        <label for="size">Size:</label>
+        <input type="text" name="size" required>
+        <br>
+
+        <label for="weight">Weight:</label>
+        <input type="number" name="weight" required>
+        <br>
+
+        <label for="color">Color:</label>
+        <input type="text" name="color" required>
+        <br>
+
+        <label for="availability">Availability:</label>
+        <input type="text" name="availability" required>
+        <br>
+
+        <label for="date_added">Date Added:</label>
+        <input type="date" name="date_added" required>
+        <br>
+
+        <label for="location">Location:</label>
+        <input type="text" name="location" required>
+        <br>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+{% endblock %}
+
+
