@@ -35,8 +35,6 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'crispy_forms',
     'crispy_bootstrap4',
-    'geo.apps.GeoConfig',
-    'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -85,7 +83,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_tutorial',
-        'USER': 'root',
+        'USER': 'enigma',
         'PASSWORD': 'Ominaphi@123',
         'HOST': 'localhost',
         'PORT': '3306',
