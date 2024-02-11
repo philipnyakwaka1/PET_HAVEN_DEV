@@ -19,19 +19,21 @@ def get_users(request):
     return Response(serializer.data)
 
 
-@api_view(['GET', 'POST'])
+@api_view(['GET', 'PUT', 'DELETE'])
 def get_user_by_id(request, id):
-    if request.user.is_authenticated:
+    if not request.user.is_authenticated:
         user_obj = get_object_or_404(User, pk=id)
-        user_profile = Profile.objects.get(user=user_obj)
-        if request.method == 'POST':
+        user_profile = get_object_or_404(Profile, user=user_obj)
+        if request.method == 'PUT':
             for key, val in request.data.items():
                 if hasattr(user_profile, key):
                     setattr(user_profile, key, val)
                 else:
-                    raise AttributeError(
+                    raise Http404(
                         f'Attribute {key} does not exist in users profile')
             user_profile.save()
+        elif request.method == 'DELETE':
+            user_obj.delete()
     else:
         raise PermissionDenied(
             "You do not have the permission to access this resource")

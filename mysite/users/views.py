@@ -4,6 +4,7 @@ from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile
 from django.contrib.auth.models import User
+from django.http import Http404
 
 
 def register(request):
@@ -27,12 +28,14 @@ def home_page(request):
 @login_required
 def profile(request):
     if request.method == 'POST':
-
-        user = User.objects.get(username=request.user)
-        user.profile.first_name = request.POST['first_name']
-        user.profile.last_name = request.POST['last_name']
-        user.profile.profile_pic = request.POST['profile_pic']
-        user.profile.address = request.POST['address']
-        user.profile.phone = request.POST['phone']
-        user.profile.save()
-    return render(request, 'users/profile.html', {'instance': request.user})
+            if 'profile_update' in request.POST.keys():
+                user = User.objects.get(pk=request.user.id)
+                for key, val in request.POST.items():
+                        if key not in ['csrfmiddlewaretoken', 'profile_update']:
+                            if hasattr(user.profile, key):
+                                setattr(user.profile, key, val)
+                            else:
+                                raise Http404(
+                                    f'Attribute {key} does not exist in users profile')
+                user.profile.save()
+    return render(request, 'users/profile.html', {'instance': request.user.profile})

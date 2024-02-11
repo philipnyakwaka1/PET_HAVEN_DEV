@@ -20,7 +20,7 @@
         <label for="phone">Phone</label>
         <input type="text" name="phone" required>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit", name="profile_update">
     </form>
 </div>
 <hr>
@@ -42,7 +42,7 @@
 <div>
     <h2>Find Your Favourite Pet</h2>
     <h1>Do you want to sell a pet?</h1>
-    <form method="post" action="#">
+    <form method="post" action="{% url 'profile-view' %}", name="sell-pet">
         {% csrf_token %}
 
         <label for="name">Pet Name:</label>
