@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile
 from django.contrib.auth.models import User
 from django.http import Http404
+from .models import Pet, Order
 
 
 def register(request):
@@ -29,13 +30,25 @@ def home_page(request):
 def profile(request):
     if request.method == 'POST':
             if 'profile_update' in request.POST.keys():
-                user = User.objects.get(pk=request.user.id)
+                user = User.objects.get(pk=request.user.pk)
                 for key, val in request.POST.items():
                         if key not in ['csrfmiddlewaretoken', 'profile_update']:
+                            if 'profile_pic' in request.FILES:
+                                user.profile.profile_pic = request.FILES['profile_pic']
                             if hasattr(user.profile, key):
                                 setattr(user.profile, key, val)
                             else:
                                 raise Http404(
                                     f'Attribute {key} does not exist in users profile')
                 user.profile.save()
-    return render(request, 'users/profile.html', {'instance': request.user.profile})
+
+            if 'sell_pet' in request.POST.keys():
+                pet_dict = dict(request.POST.items())
+                del pet_dict['csrfmiddlewaretoken']
+                del pet_dict['sell_pet']
+                pet_dict['owner'] = User.objects.get(pk=request.user.pk)
+                if 'image' in request.FILES:
+                     pet_dict['image'] = request.FILES['image']
+                Pet.objects.create(**pet_dict)
+    all_pets = Pet.objects.all()
+    return render(request, 'users/profile.html', {'pets': all_pets, 'user': request.user})

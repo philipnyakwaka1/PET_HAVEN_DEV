@@ -1,24 +1,23 @@
 {% extends 'users/base.html' %}
 {% block content %}
-{{ instance }}
 <div>
-    <h2>Update Profile</h2>
-    <form method="POST", action="{% url 'profile-view' %}">
+    <h1>This is the users profile page</h1>
+    <form method="POST", action="{% url 'profile-view' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <label for="first_name">First Name:</label>
-        <input type="text" name="first_name" required>
+        <input type="text" name="first_name" id="first_name" required>
         <br>
         <label for="last_name">Last Name:</label>
-        <input type="text" name="last_name" required>
+        <input type="text" name="last_name" id="last_name" required>
         <br>
         <label for="profile_pic">Update profile picture:</label>
-        <input type="file" name="profile_pic" accept="image/*" required>
+        <input type="file" name="profile_pic" accept="image/*" id="profile_pic" required>
         <br>
         <label for="address">Address</label>
-        <input type="text" name="address" required>
+        <input type="text" name="address" id="address" required>
         <br>
         <label for="phone">Phone</label>
-        <input type="text" name="phone" required>
+        <input type="text" name="phone" id="phone" required>
         <br>
         <input type="submit" value="Submit", name="profile_update">
     </form>
@@ -42,67 +41,78 @@
 <div>
     <h2>Find Your Favourite Pet</h2>
     <h1>Do you want to sell a pet?</h1>
-    <form method="post" action="{% url 'profile-view' %}", name="sell-pet">
+    <form method="post" action="{% url 'profile-view' %}" enctype="multipart/form-data">
         {% csrf_token %}
 
         <label for="name">Pet Name:</label>
-        <input type="text" name="name" required>
+        <input type="text" name="name" id="name" required>
         <br>
 
         <label for="image">Image:</label>
-        <input type="file" name="image" accept="image/*" required>
+        <input type="file" name="image" accept="image/*" id="image" required>
         <br>
 
         <label for="age">Age:</label>
-        <input type="number" name="age" required>
+        <input type="number" name="age" id="age" required>
         <br>
 
         <label for="gender">Gender:</label>
-        <input type="text" name="gender" required>
+        <input type="text" name="gender" id="gender" required>
         <br>
 
         <label for="specie">Species:</label>
-        <input type="text" name="specie" required>
+        <input type="text" name="specie" id="specie" required>
         <br>
 
         <label for="breed">Breed:</label>
-        <input type="text" name="breed" required>
+        <input type="text" name="breed" id="breed" required>
         <br>
 
         <label for="description">Description:</label>
-        <textarea name="description" rows="4" required></textarea>
+        <textarea name="description" rows="4" id="description" required></textarea>
         <br>
 
         <label for="price">Price:</label>
-        <input type="number" name="price" required>
+        <input type="number" name="price" id="price" required>
         <br>
 
         <label for="size">Size:</label>
-        <input type="text" name="size" required>
+        <input type="text" name="size" id="size" required>
         <br>
 
         <label for="weight">Weight:</label>
-        <input type="number" name="weight" required>
+        <input type="number" name="weight" id="weight" required>
         <br>
 
         <label for="color">Color:</label>
-        <input type="text" name="color" required>
+        <input type="text" name="color" id="color" required>
         <br>
 
         <label for="availability">Availability:</label>
-        <input type="text" name="availability" required>
+        <input type="text" name="availability" id="availability" required>
         <br>
 
         <label for="date_added">Date Added:</label>
-        <input type="date" name="date_added" required>
+        <input type="date" name="date_added" id="date_added" required>
         <br>
 
         <label for="location">Location:</label>
-        <input type="text" name="location" required>
+        <input type="text" name="location" id="location" required>
         <br>
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" name="sell_pet">
     </form>
+</div>
+<hr>
+<br>
+<hr>
+<h1>All Pets</h1>
+<div class="all-pets">
+    <h1>All Pets</h1>
+    {% for pet in pets %}
+        <img src="{{ pet.image.url }}">
+    {% endfor %}
+
 </div>
 {% endblock %}
 
