@@ -1,0 +1,199 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block content %}
+   <!-- Navbar Start -->
+   <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0">
+    <a href="index.html" class="navbar-brand ms-lg-5">
+      <h1 class="m-0 text-uppercase text-dark">
+        <i class="bi bi-shop fs-1 text-primary me-3"></i>Pet Haven
+      </h1>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarCollapse"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto py-0">
+        <a href="{% url 'home-view' %}" class="nav-item nav-link active">Home</a>
+        <div class="nav-item dropdown">
+          <a
+            href="#"
+            class="nav-link dropdown-toggle"
+            id="navbarDropdownPages"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >Pages</a
+          >
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
+            <li><a class="dropdown-item" href="team.html">About Us</a></li>
+            <li><a class="dropdown-item" href="team.html">The Team</a></li>
+            <li><a class="dropdown-item" href="testimonial.html">Testimonials</a></li>
+            <li><a class="dropdown-item" href="blog.html">Blogs</a></li>
+          </ul>
+        </div>
+        <div class="nav-item dropdown">
+         <a
+           href="#"
+           class="nav-link dropdown-toggle"
+           id="navbarDropdownShop"
+           role="button"
+           data-bs-toggle="dropdown"
+           aria-expanded="false"
+           >Shop</a
+         >
+         <ul class="dropdown-menu bg-light rounded-0" aria-labelledby="navbarDropdownShop">
+              <li><a class="dropdown-item" href="#">Make purchase</a></li>
+              <li><a class="dropdown-item" href="#">Cart</a></li>
+              <li><a class="dropdown-item" href="#">Checkout</a></li>
+         </ul>
+       </div>
+        <div class="nav-item dropdown">
+          <a
+            href="#"
+            class="nav-link dropdown-toggle"
+            id="navbarDropdownShop"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >Account</a
+          >
+          <ul class="dropdown-menu bg-light rounded-0" aria-labelledby="navbarDropdownShop">
+            {% if not user.is_authenticated %}
+               <li><a class="dropdown-item" href="{% url 'register' %}">Create Account</a></li>
+               <li><a class="dropdown-item" href="#">Login</a></li>
+            {% else %}
+               <li><a class="dropdown-item" href="{% url 'profile-view' %}">My Profile</a></li>
+               <li><a class="dropdown-item" href="#">Saved Items</a></li>
+               <li><a class="dropdown-item" href="#">Orders</a></li>
+               <li><a class="dropdown-item" href="#">Saved Items</a></li>
+               <li><a class="dropdown-item" href="#">Log Out</a></li>
+            {% endif %}
+          </ul>
+        </div>
+        <a
+          href="{% url 'sell-pet' %}"
+          class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5"
+          >SELL A PET<i class="bi bi-arrow-right"></i
+        ></a>
+      </div>
+    </div>
+  </nav>
+<!-- Navbar End -->
+
+<!-- Modal Search Start -->
+<div
+  class="modal fade"
+  id="searchModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content rounded-0">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Search by keyword
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body d-flex align-items-center">
+        <div class="input-group w-75 mx-auto d-flex">
+          <input
+            type="search"
+            class="form-control p-3"
+            placeholder="keywords"
+            aria-describedby="search-icon-1"
+          />
+          <span id="search-icon-1" class="input-group-text p-3"
+            ><i class="fa fa-search"></i
+          ></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Search End -->
+<!-- Pet form -->
+<div>
+  <!-- <h2>Tell us about your pet</h2> -->
+  <h1>Tell us about your pet</h1>
+  <form class="pet-info" method="post" action="{% url 'list-pet' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="specie">Animal Type<span style="color: red;">*</span>:</label>
+    <select name="specie" id="specie" required>
+      <option value="dog">dog</option>
+      <option value="cat">cat</option>
+      <option value="bird">bird</option>
+      <option value="rabbit">rabbit</option>
+    </select>
+    <br />
+    <label for="breed">Breed<span style="color: red;">*</span>:</label>
+    <input type="text" name="breed" id="breed" required />
+    <br />
+    <label for="name">Pet Name<span style="color: red;">*</span>:</label>
+    <input type="text" name="name" id="name" required />
+    <br />
+
+    <label for="age">Age of pet<span style="color: red;">*</span>:</label>
+    <input type="number" name="age" id="age" required />
+    <br />
+
+    <label for="gender">Gender:</label>
+    <select name="gender" id="gender">
+      <option value="male">male</option>
+      <option value="female">female</option>
+      <option value="none">prefer not to say</option>
+    </select>
+    <br />
+
+    <label for="price">Price in Ksh<span style="color: red;">*</span>:</label>
+    <input type="number" name="price" id="price" required />
+    <br />
+
+    <label for="size">Size<span style="color: red;">*</span>:</label>
+    <input type="text" name="size" id="size" required/>
+    <br />
+
+    <label for="weight">Weight<span style="color: red;">*</span>:</label>
+    <input type="number" name="weight" id="weight" required />
+    <br />
+
+    <label for="color">Color<span style="color: red;">*</span>:</label>
+    <input type="text" name="color" id="color" required />
+    <br />
+    <label for="description">Description<span style="color: red;">*</span>:</label>
+    <textarea name="description" rows="4" id="description" required></textarea>
+    <br />
+
+    <label for="availability">Availability<span style="color: red;">*</span>:</label>
+    <input type="text" name="availability" id="availability" required />
+    <br />
+
+    <label for="date_added">Date Added<span style="color: red;">*</span>:</label>
+    <input type="date" name="date_added" id="date_added" required />
+    <br />
+
+    <label for="location">Location<span style="color: red;">*</span>:</label>
+    <input type="text" name="location" id="location" required />
+    <br />
+    <label for="image">Image<span style="color: red;">*</span>:</label>
+    <input type="file" name="image" accept="image/*" id="image" required />
+    <br />
+
+    <input class="btn btn-primary mt-5 p-3" type="submit" value="Submit" name="sell_pet" />
+  </form>
+</div>
+<!-- End pet form -->
+
+{% endblock %}

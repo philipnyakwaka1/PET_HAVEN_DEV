@@ -1,0 +1,252 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- 
+<div class="home-container">
+<h1>Welcome to the Home Page</h1>
+<nav class="navbar">
+    <a class="nav-item" href="{% url 'register' %}">Sign Up</a>
+    <a class="nav-item" href="{% url 'login' %}">Sign In</a>
+    <a class="nav-item" href="{% url 'profile-view' %}">Profile</a>
+</nav>
+</div>
+-->
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0">
+<a href="index.html" class="navbar-brand ms-lg-5">
+    <h1 class="m-0 text-uppercase text-dark">
+    <i class="bi bi-shop fs-1 text-primary me-3"></i>Pet Haven
+    </h1>
+</a>
+<button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarCollapse"
+>
+    <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="navbar-nav ms-auto py-0">
+    <a href="{% url 'home-view' %}" class="nav-item nav-link active">Home</a>
+    <div class="nav-item dropdown">
+        <a
+        href="#"
+        class="nav-link dropdown-toggle"
+        id="navbarDropdownPages"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        >Pages</a
+        >
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
+        <li><a class="dropdown-item" href="team.html">About Us</a></li>
+        <li><a class="dropdown-item" href="team.html">The Team</a></li>
+        <li><a class="dropdown-item" href="testimonial.html">Testimonials</a></li>
+        <li><a class="dropdown-item" href="blog.html">Blogs</a></li>
+        </ul>
+    </div>
+    <div class="nav-item dropdown">
+        <a
+        href="#"
+        class="nav-link dropdown-toggle"
+        id="navbarDropdownShop"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        >Shop</a
+        >
+        <ul class="dropdown-menu bg-light rounded-0" aria-labelledby="navbarDropdownShop">
+            <li><a class="dropdown-item" href="#">Make purchase</a></li>
+            <li><a class="dropdown-item" href="#">Cart</a></li>
+            <li><a class="dropdown-item" href="#">Checkout</a></li>
+        </ul>
+    </div>
+    <div class="nav-item dropdown">
+        <a
+        href="#"
+        class="nav-link dropdown-toggle"
+        id="navbarDropdownShop"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        >Account</a
+        >
+        <ul class="dropdown-menu bg-light rounded-0" aria-labelledby="navbarDropdownShop">
+        {% if not user.is_authenticated %}
+            <li><a class="dropdown-item" href="{% url 'register' %}">Create Account</a></li>
+            <li><a class="dropdown-item" href="#">Login</a></li>
+        {% else %}
+            <li><a class="dropdown-item" href="{% url 'profile-view' %}">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Saved Items</a></li>
+            <li><a class="dropdown-item" href="#">Orders</a></li>
+            <li><a class="dropdown-item" href="#">Saved Items</a></li>
+            <li><a class="dropdown-item" href="#">Log Out</a></li>
+        {% endif %}
+        </ul>
+    </div>
+    <a
+        href="{% url 'sell-pet' %}"
+        class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5"
+        >SELL A PET<i class="bi bi-arrow-right"></i
+    ></a>
+    </div>
+</div>
+</nav>
+<!-- Navbar End -->
+<div class="container-fluid services py-5">
+<div class="container py-5">
+  <div class="mx-auto text-center mb-5" style="max-width: 800px">
+    <p class="fs-4 text-uppercase text-center text-primary">
+      What Would you like to sell
+    </p>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <div
+        class="services-item bg-light border-4 border-end border-primary rounded p-4"
+      >
+        <div class="row align-items-center">
+          <div class="col-8">
+            <div class="services-content text-end">
+              <h3>Dogs</h3>
+              <p>
+                Dogs are known for their loyalty and strong bonds with
+                their owners, providing constant companionship.
+              </p>
+              <a
+                href="{% url 'list-pet' %}"
+                class="btn btn-primary btn-primary-outline-0 rounded-pill py-2 px-4"
+                >Sell your Pet</a
+              >
+            </div>
+          </div>
+          <div class="col-4">
+            <div
+              class="services-img d-flex align-items-center justify-content-center rounded"
+            >
+              <img
+                src="{% static 'images/dogg.jpg' %}"
+                class="img-fluid rounded"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div
+        class="services-item bg-light border-4 border-start border-primary rounded p-4"
+      >
+        <div class="row align-items-center">
+          <div class="col-4">
+            <div
+              class="services-img d-flex align-items-center justify-content-center rounded"
+            >
+              <img
+                src="{% static 'images/kitty.jpg' %}"
+                class="img-fluid rounded"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="services-content text-start">
+              <h3>Cats</h3>
+              <p>
+                Cats are really low maintainance. Cats are generally more
+                independent and require less hands-on care compared to
+                some other pets
+              </p>
+              <a
+                href="{% url 'list-pet' %}"
+                class="btn btn-primary btn-primary-outline-0 rounded-pill py-2 px-4"
+                >Sell your pet</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div
+        class="services-item bg-light border-4 border-end border-primary rounded p-4"
+      >
+        <div class="row align-items-center">
+          <div class="col-8">
+            <div class="services-content text-end">
+              <h3>Birds</h3>
+              <p>
+                Birds, known for their ability to mimic sounds, can be
+                entertaining and provide companionship.
+              </p>
+              <a
+                href="{% url 'list-pet' %}"
+                class="btn btn-primary btn-primary-outline-0 rounded-pill py-2 px-4"
+                >Sell your pet</a
+              >
+            </div>
+          </div>
+          <div class="col-4">
+            <div
+              class="services-img d-flex align-items-center justify-content-center rounded"
+            >
+              <img
+                src="{% static 'images/birdd.jpg' %}"
+                class="img-fluid rounded"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div
+        class="services-item bg-light border-4 border-start border-primary rounded p-4"
+      >
+        <div class="row align-items-center">
+          <div class="col-4">
+            <div
+              class="services-img d-flex align-items-center justify-content-center rounded"
+            >
+              <img
+                src="{% static 'images/rabbit.jpg' %}"
+                class="img-fluid rounded"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="services-content text-start">
+              <h3>Rabbits</h3>
+              <p>
+                Caring for small animals can teach children responsibility
+                and empathy.
+              </p>
+              <a
+                href="{% url 'list-pet' %}"
+                class="btn btn-primary btn-primary-outline-0 rounded-pill py-2 px-4"
+                >Sell your pet</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="services-btn text-center">
+        <a
+          href="{% url 'list-pet' %}"
+          class="btn btn-primary btn-primary-outline-0 rounded-pill py-3 px-5"
+          >Tell us about your pet</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

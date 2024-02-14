@@ -30,8 +30,6 @@
    <div class="collapse navbar-collapse" id="navbarCollapse">
      <div class="navbar-nav ms-auto py-0">
        <a href="{% url 'home-view' %}" class="nav-item nav-link active">Home</a>
-       <a href="{% url 'register' %}" class="nav-item nav-link active">Sign Up</a>
-       <a href="{% url 'login' %}" class="nav-item nav-link">Sign In</a>
        <div class="nav-item dropdown">
          <a
            href="#"
@@ -42,17 +40,29 @@
            aria-expanded="false"
            >Pages</a
          >
-         <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
+           <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
+           <li><a class="dropdown-item" href="team.html">About Us</a></li>
            <li><a class="dropdown-item" href="team.html">The Team</a></li>
-           <li>
-             <a class="dropdown-item" href="testimonial.html">Testimonial</a>
-           </li>
-           <li><a class="dropdown-item" href="blog.html">Blog Grid</a></li>
-           <li>
-             <a class="dropdown-item" href="detail.html">Blog Detail</a>
-           </li>
+           <li><a class="dropdown-item" href="testimonial.html">Testimonials</a></li>
+           <li><a class="dropdown-item" href="blog.html">Blogs</a></li>
          </ul>
        </div>
+       <div class="nav-item dropdown">
+        <a
+          href="#"
+          class="nav-link dropdown-toggle"
+          id="navbarDropdownShop"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          >Shop</a
+        >
+        <ul class="dropdown-menu bg-light rounded-0" aria-labelledby="navbarDropdownShop">
+             <li><a class="dropdown-item" href="#">Make purchase</a></li>
+             <li><a class="dropdown-item" href="#">Cart</a></li>
+             <li><a class="dropdown-item" href="#">Checkout</a></li>
+        </ul>
+      </div>
        <div class="nav-item dropdown">
          <a
            href="#"
@@ -63,19 +73,21 @@
            aria-expanded="false"
            >Account</a
          >
-         <ul
-           class="dropdown-menu bg-light rounded-0"
-           aria-labelledby="navbarDropdownShop"
-         >
-           <li><a class="dropdown-item" href="{% url 'profile-view' %}">My Account</a></li>
-           <li><a class="dropdown-item" href="#">Orders</a></li>
-           <li>
-             <a class="dropdown-item" href="#">Saved Items</a>
-           </li>
+         <ul class="dropdown-menu bg-light rounded-0" aria-labelledby="navbarDropdownShop">
+           {% if not user.is_authenticated %}
+              <li><a class="dropdown-item" href="{% url 'register' %}">Create Account</a></li>
+              <li><a class="dropdown-item" href="#">Login</a></li>
+           {% else %}
+              <li><a class="dropdown-item" href="{% url 'profile-view' %}">My Profile</a></li>
+              <li><a class="dropdown-item" href="#">Saved Items</a></li>
+              <li><a class="dropdown-item" href="#">Orders</a></li>
+              <li><a class="dropdown-item" href="#">Saved Items</a></li>
+              <li><a class="dropdown-item" href="#">Log Out</a></li>
+           {% endif %}
          </ul>
        </div>
        <a
-         href="{% url 'profile-view' %}"
+         href="{% url 'sell-pet' %}"
          class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5"
          >SELL A PET<i class="bi bi-arrow-right"></i
        ></a>

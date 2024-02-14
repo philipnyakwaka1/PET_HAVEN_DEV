@@ -52,3 +52,21 @@ def profile(request):
                 Pet.objects.create(**pet_dict)
     all_pets = Pet.objects.all()
     return render(request, 'users/profile.html', {'pets': all_pets, 'user': request.user})
+
+@login_required
+def sell(request):
+    return render(request, 'users/sell.html', {'user': request.user})
+
+@login_required
+def list_pet(request):
+    if request.method == 'POST':
+            if 'sell_pet' in request.POST.keys():
+                pet_dict = dict(request.POST.items())
+                del pet_dict['csrfmiddlewaretoken']
+                del pet_dict['sell_pet']
+                pet_dict['owner'] = User.objects.get(pk=request.user.pk)
+                if 'image' in request.FILES:
+                     pet_dict['image'] = request.FILES['image']
+                listed_pet = Pet.objects.create(**pet_dict)
+                return render(request, 'users/listed_pet.html', {'pet': listed_pet})
+    return render(request, 'users/pet_information.html', {'user': request.user})
