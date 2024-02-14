@@ -90,72 +90,29 @@
 <div>
   <!-- <h2>Tell us about your pet</h2> -->
   <h1>Tell us about your pet</h1>
-  <form class="pet-info" method="post" action="{% url 'list-pet' %}" enctype="multipart/form-data">
+  <form class="pet-info" method="post" action="{% url 'profile-update' %}" enctype="multipart/form-data">
     {% csrf_token %}
-    <label for="specie">Animal Type<span style="color: red;">*</span>:</label>
-    <select name="specie" id="specie" required>
-      <option value="dog">dog</option>
-      <option value="cat">cat</option>
-      <option value="bird">bird</option>
-      <option value="rabbit">rabbit</option>
-    </select>
-    <br />
-    <label for="breed">Breed<span style="color: red;">*</span>:</label>
-    <input type="text" name="breed" id="breed" required />
-    <br />
-    <label for="name">Pet Name<span style="color: red;">*</span>:</label>
-    <input type="text" name="name" id="name" required />
-    <br />
-
-    <label for="age">Age of pet<span style="color: red;">*</span>:</label>
-    <input type="number" name="age" id="age" required />
-    <br />
-
-    <label for="gender">Gender:</label>
-    <select name="gender" id="gender">
-      <option value="male">male</option>
-      <option value="female">female</option>
-      <option value="none">prefer not to say</option>
-    </select>
-    <br />
-
-    <label for="price">Price in Ksh<span style="color: red;">*</span>:</label>
-    <input type="number" name="price" id="price" required />
-    <br />
-
-    <label for="size">Size<span style="color: red;">*</span>:</label>
-    <input type="text" name="size" id="size" required/>
-    <br />
-
-    <label for="weight">Weight<span style="color: red;">*</span>:</label>
-    <input type="number" name="weight" id="weight" required />
-    <br />
-
-    <label for="color">Color<span style="color: red;">*</span>:</label>
-    <input type="text" name="color" id="color" required />
-    <br />
-    <label for="description">Description<span style="color: red;">*</span>:</label>
-    <textarea name="description" rows="4" id="description" required></textarea>
-    <br />
-
-    <label for="availability">Availability<span style="color: red;">*</span>:</label>
-    <input type="text" name="availability" id="availability" required />
-    <br />
-
-    <label for="date_added">Date Added<span style="color: red;">*</span>:</label>
-    <input type="date" name="date_added" id="date_added" required />
-    <br />
-
-    <label for="location">Location<span style="color: red;">*</span>:</label>
-    <input type="text" name="location" id="location" required />
-    <br />
-    <label for="image">Image<span style="color: red;">*</span>:</label>
-    <input type="file" name="image" accept="image/*" id="image" required />
-    <br />
-
-    <input class="btn btn-primary mt-5 p-3" type="submit" value="Submit" name="sell_pet" />
-  </form>
-</div>
-<!-- End pet form -->
+    <div>
+        <h1>Create your Profile</h1>
+        <form class="profile" method="POST" , action="{% url 'profile-view' %}">
+          <label for="first_name">First Name:<span>*</span></label>
+          <input type="text" name="first_name" id="first_name" required />
+          <br />
+          <label for="last_name">Last Name:<span>*</span></label>
+          <input type="text" name="last_name" required id="last_name" />
+          <br />
+          <label for="profile_pic">Update profile picture:<span>*</span></label>
+          <input type="file" name="profile_pic" accept="image/*" id="profile_pic" required/>
+          <br />
+          <label for="address">Address:<span>*</span></label>
+          <input type="text" name="address" id ="address" required />
+          <br />
+          <label for="phone">Phone:<span>*</span></label>
+          <input type="text" name="phone" id ="phone" required />
+          <br />
+          <input class="btn btn-primary" type="submit" value="Submit" name="profile_update" />
+        </form>
+      </div>
 
 {% endblock %}
+ 

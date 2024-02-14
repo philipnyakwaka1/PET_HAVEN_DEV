@@ -1,120 +1,292 @@
 {% extends 'users/base.html' %}
 {% block content %}
-<h1>Hello Bootstrap World</h1>
-<div>
-    <h1>This is the users profile page</h1>
-    <form method="POST", action="{% url 'profile-view' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        <label for="first_name">First Name:</label>
-        <input type="text" name="first_name" id="first_name" required>
-        <br>
-        <label for="last_name">Last Name:</label>
-        <input type="text" name="last_name" id="last_name" required>
-        <br>
-        <label for="profile_pic">Update profile picture:</label>
-        <input type="file" name="profile_pic" accept="image/*" id="profile_pic" required>
-        <br>
-        <label for="address">Address</label>
-        <input type="text" name="address" id="address" required>
-        <br>
-        <label for="phone">Phone</label>
-        <input type="text" name="phone" id="phone" required>
-        <br>
-        <input type="submit" value="Submit", name="profile_update">
-    </form>
-</div>
-<hr>
-<div class="user-profile">
-    <h1>Profile Details</h1>
-    <div>
-        <img src="{{ user.profile.profile_pic.url}}">
+<style>
+    body{
+    margin-top:20px;
+    color: #1a202c;
+    text-align: left;
+    background-color: #e2e8f0;    
+}
+.main-body {
+    padding: 15px;
+}
+.card {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+}
+
+.gutters-sm {
+    margin-right: -8px;
+    margin-left: -8px;
+}
+
+.gutters-sm>.col, .gutters-sm>[class*=col-] {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+.mb-3, .my-3 {
+    margin-bottom: 1rem!important;
+}
+
+.bg-gray-300 {
+    background-color: #e2e8f0;
+}
+.h-100 {
+    height: 100%!important;
+}
+.shadow-none {
+    box-shadow: none!important;
+}
+</style>
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0">
+    <a href="index.html" class="navbar-brand ms-lg-5">
+      <h1 class="m-0 text-uppercase text-dark">
+        <i class="bi bi-shop fs-1 text-primary me-3"></i>Pet Haven
+      </h1>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarCollapse"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto py-0">
+        <a href="{% url 'home-view' %}" class="nav-item nav-link active">Home</a>
+        <div class="nav-item dropdown">
+          <a
+            href="#"
+            class="nav-link dropdown-toggle"
+            id="navbarDropdownPages"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >Pages</a
+          >
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
+            <li><a class="dropdown-item" href="team.html">About Us</a></li>
+            <li><a class="dropdown-item" href="team.html">The Team</a></li>
+            <li><a class="dropdown-item" href="testimonial.html">Testimonials</a></li>
+            <li><a class="dropdown-item" href="blog.html">Blogs</a></li>
+          </ul>
+        </div>
+        <div class="nav-item dropdown">
+         <a
+           href="#"
+           class="nav-link dropdown-toggle"
+           id="navbarDropdownShop"
+           role="button"
+           data-bs-toggle="dropdown"
+           aria-expanded="false"
+           >Shop</a
+         >
+         <ul class="dropdown-menu bg-light rounded-0" aria-labelledby="navbarDropdownShop">
+              <li><a class="dropdown-item" href="#">Make purchase</a></li>
+              <li><a class="dropdown-item" href="#">Cart</a></li>
+              <li><a class="dropdown-item" href="#">Checkout</a></li>
+         </ul>
+       </div>
+        <div class="nav-item dropdown">
+          <a
+            href="#"
+            class="nav-link dropdown-toggle"
+            id="navbarDropdownShop"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >Account</a
+          >
+          <ul class="dropdown-menu bg-light rounded-0" aria-labelledby="navbarDropdownShop">
+            {% if not user.is_authenticated %}
+               <li><a class="dropdown-item" href="{% url 'register' %}">Create Account</a></li>
+               <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+            {% else %}
+               <li><a class="dropdown-item" href="{% url 'profile-view' %}">My Profile</a></li>
+               <li><a class="dropdown-item" href="#">Saved Items</a></li>
+               <li><a class="dropdown-item" href="#">Orders</a></li>
+               <li><a class="dropdown-item" href="#">Saved Items</a></li>
+               <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+            {% endif %}
+          </ul>
+        </div>
+        <a
+          href="{% url 'sell-pet' %}"
+          class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5"
+          >SELL A PET<i class="bi bi-arrow-right"></i
+        ></a>
+      </div>
     </div>
-    <br>
-    <p>Firstname: {{user.profile.first_name}}</p>
-    <p>Lastname: {{user.profile.last_name}} </p>
-    <p>Email: {{user.email}} </p>
-    <p>Address: {{user.profile.address}} </p>
-    <p>Phone: {{user.profile.phone}} </p>
-</div>
-<br>
-<hr>
-<br>
-<div>
-    <h2>Find Your Favourite Pet</h2>
-    <h1>Do you want to sell a pet?</h1>
-    <form method="post" action="{% url 'profile-view' %}" enctype="multipart/form-data">
-        {% csrf_token %}
+  </nav>
 
-        <label for="name">Pet Name:</label>
-        <input type="text" name="name" id="name" required>
-        <br>
+  <div class="container">
+    <div class="main-body">
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="{{user.profile.profile_pic.url}}" alt="Admin" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <h4>{{user.profile.first_name}} {{ user.profile.last_name }}</h4>
+                      <p class="text-secondary mb-1">Joined {{user.date_joined}}</p>
+                      <p class="text-muted font-size-sm">{{user.profile.address}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-3">
+                <h1>My Pets</h1>
+                {% if pets is not None %}
+                    <ul class="list-group">
+                        {% for pet in pets %}
+                            <li class="list-group-item">
+                                <span class="ml-auto">
+                                    <img src="{{ pet.image.url }}" alt="" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;"> - <small>{{ pet.name }}</small>
+                                </span>
+                                <span style="margin-right:1.25em; display:inline-block;">&nbsp;</span>
+                                <span class="ml-auto">
+                                    <a href="#" class="btn btn-warning btn-sm mr-2">Unlist</a>
+                                    <a href="{% url 'list-pet' %}" class="btn btn-primary btn-sm">Update</a>
+                                </span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>You have not listed any pets for sale</p>
+                    <small style="text-align: center;">Click <a href="{% url 'sell-pet' %}">here</a> to list pet</small>
+                {% endif %}
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Full Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.profile.first_name}} {{user.profile.last_name}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.email}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.profile.phone}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.profile.address}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <a class="btn btn-info" href="{% url 'profile-update' %}">Edit</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-        <label for="image">Image:</label>
-        <input type="file" name="image" accept="image/*" id="image" required>
-        <br>
+              <div class="row gutters-sm">
+                <div class="col-sm-6 mb-3">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
+                      <small>Web Design</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>Website Markup</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>One Page</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>Mobile Template</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>Backend API</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 mb-3">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
+                      <small>Web Design</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>Website Markup</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>One Page</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>Mobile Template</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <small>Backend API</small>
+                      <div class="progress mb-3" style="height: 5px">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-        <label for="age">Age:</label>
-        <input type="number" name="age" id="age" required>
-        <br>
 
-        <label for="gender">Gender:</label>
-        <input type="text" name="gender" id="gender" required>
-        <br>
 
-        <label for="specie">Species:</label>
-        <input type="text" name="specie" id="specie" required>
-        <br>
+            </div>
+          </div>
 
-        <label for="breed">Breed:</label>
-        <input type="text" name="breed" id="breed" required>
-        <br>
-
-        <label for="description">Description:</label>
-        <textarea name="description" rows="4" id="description" required></textarea>
-        <br>
-
-        <label for="price">Price:</label>
-        <input type="number" name="price" id="price" required>
-        <br>
-
-        <label for="size">Size:</label>
-        <input type="text" name="size" id="size" required>
-        <br>
-
-        <label for="weight">Weight:</label>
-        <input type="number" name="weight" id="weight" required>
-        <br>
-
-        <label for="color">Color:</label>
-        <input type="text" name="color" id="color" required>
-        <br>
-
-        <label for="availability">Availability:</label>
-        <input type="text" name="availability" id="availability" required>
-        <br>
-
-        <label for="date_added">Date Added:</label>
-        <input type="date" name="date_added" id="date_added" required>
-        <br>
-
-        <label for="location">Location:</label>
-        <input type="text" name="location" id="location" required>
-        <br>
-
-        <input type="submit" value="Submit" name="sell_pet">
-    </form>
-</div>
-<hr>
-<br>
-<hr>
-<h1>All Pets</h1>
-<div class="all-pets">
-    <h1>All Pets</h1>
-    {% for pet in pets %}
-        <img src="{{ pet.image.url }}">
-    {% endfor %}
-
-</div>
+        </div>
+    </div>
 {% endblock %}
 
 
