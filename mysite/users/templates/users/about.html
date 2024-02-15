@@ -1,0 +1,363 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pet Haven</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}" />
+  </head>
+  <body>
+    <!-- Navbar Start -->
+    <nav
+      class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0"
+    >
+      <a href="{% url 'index' %}" class="navbar-brand ms-lg-5">
+        <h1 class="m-0 text-uppercase text-dark">
+          <i class="bi bi-shop fs-1 text-primary me-3"></i>Pet Haven
+        </h1>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+          <a href="{% url 'index' %}" class="nav-item nav-link">Home</a>
+          <a href="{% url 'about' %}" class="nav-item nav-link active">About</a>
+          <a href="{% url 'login' %}" class="nav-item nav-link">Sign In</a>
+          <!-- Add your Django URL patterns here for dropdown links -->
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownPages"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              >Pages</a
+            >
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
+              <li>
+                <a class="dropdown-item" href="{% url 'team' %}">The Team</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'testimonial' %}"
+                  >Testimonial</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'blog_grid' %}"
+                  >Blog Grid</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'blog_detail' %}"
+                  >Blog Detail</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Add your Django URL patterns here for another dropdown -->
+          <div class="nav-item dropdown">
+            <a
+              href="#"
+              class="nav-link dropdown-toggle"
+              id="navbarDropdownShop"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              >Shop</a
+            >
+            <ul
+              class="dropdown-menu bg-light rounded-0"
+              aria-labelledby="navbarDropdownShop"
+            >
+              <li><a class="dropdown-item" href="{% url 'shop' %}">Shop</a></li>
+              <li><a class="dropdown-item" href="{% url 'cart' %}">Cart</a></li>
+              <li>
+                <a class="dropdown-item" href="{% url 'checkout' %}"
+                  >Checkout</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'page_not_found' %}"
+                  >404 Page</a
+                >
+              </li>
+            </ul>
+          </div>
+          <a
+            href="{% url 'seller' %}"
+            class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5"
+            >SELL A PET<i class="bi bi-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Modal Search Start -->
+    <div
+      class="modal fade"
+      id="searchModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content rounded-0">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Search by keyword
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body d-flex align-items-center">
+            <div class="input-group w-75 mx-auto d-flex">
+              <input
+                type="search"
+                class="form-control p-3"
+                placeholder="keywords"
+                aria-describedby="search-icon-1"
+              />
+              <span id="search-icon-1" class="input-group-text p-3"
+                ><i class="fa fa-search"></i
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Search End -->
+
+    <!-- Hero Start -->
+    <div class="container-fluid hero-header">
+      <div class="container py-5">
+        <div class="row g-5 align-items-center">
+          <div class="col-md-12 col-lg-7">
+            <h4 class="mb-3 text-secondary">Your Online Pet Shop</h4>
+            <h1 class="mb-5 display-3 text-primary">Whatever you like</h1>
+            <div class="position-relative mx-auto">
+              <input
+                class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill"
+                type="number"
+                placeholder="Search"
+              />
+              <button
+                type="submit"
+                class="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100"
+                style="top: 0; right: 25%"
+              >
+                Submit Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Hero End -->
+
+    <!-- About Start -->
+    <div class="container">
+      <div class="row py-5">
+        <div class="col-lg-7 pb-5 pb-lg-0 px-3 px-lg-5">
+          <div class="mx-auto text-center mb-5" style="max-width: 800px">
+            <p class="fs-4 text-uppercase text-center text-primary">
+              Get your Furry Best Friend
+            </p>
+            <h1 class="display-3">About Us</h1>
+          </div>
+          <h5 class="text-muted mb-3">
+            Welcome to Pet Haven, your ultimate destination for all things furry
+            and feathery!!
+          </h5>
+          <p class="mb-4">
+            At Pet Haven, we understand that pets are not just animals; they are
+            cherished members of your family, bringing joy, love, and
+            companionship to your life. Our online pet shop is designed with the
+            utmost care and dedication to provide a seamless and enjoyable
+            experience for both you and your future four-legged friend.
+          </p>
+          <p class="mb-4">
+            Pet Haven was founded with a passion for enhancing the bond between
+            humans and animals. Our team of pet enthusiasts and experts is
+            committed to delivering a diverse selection of pets, pet supplies,
+            and accessories to cater to the unique needs and preferences of
+            every pet lover.
+          </p>
+          <a href="" class="btn btn-lg btn-primary mt-3 px-4">Learn More</a>
+        </div>
+        <div class="col-lg-5">
+          <div class="row px-3">
+            <div class="col-12 p-0">
+              <img
+                class="img-fluid w-100"
+                src="{% static 'images/carousel-1.jpg' %}"
+                alt=""
+              />
+            </div>
+            <div class="col-6 p-0">
+              <img
+                class="img-fluid w-100"
+                src="{% static 'images/birddd.jpg' %}"
+                alt=""
+              />
+            </div>
+            <div class="col-6 p-0">
+              <img
+                class="img-fluid w-100"
+                src="{% static 'images/about-1.jpg' %}"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- About End -->
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
+      <div class="container py-5">
+        <div
+          class="pb-4 mb-4"
+          style="border-bottom: 1px solid rgba(226, 175, 24, 0.5)"
+        >
+          <div class="row g-4 footer">
+            <div class="col-lg-3">
+              <a href="{% url 'index' %}">
+                <h1 class="text-primary mb-0">Pet Haven</h1>
+                <p class="text-secondary mb-0">We love Animals</p>
+              </a>
+            </div>
+            <div class="col-lg-6">
+              <div class="position-relative mx-auto">
+                <input
+                  class="form-control border-0 w-100 py-3 px-4 rounded-pill"
+                  type="email"
+                  placeholder="Your Email"
+                />
+                <button
+                  type="submit"
+                  class="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill text-white"
+                  style="top: 0; right: 0"
+                >
+                  Subscribe Now
+                </button>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="d-flex justify-content-end pt-3">
+                <a
+                  class="btn btn-outline-secondary me-2 btn-md-square rounded-circle"
+                  href="https://www.twitter.com"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a
+                  class="btn btn-outline-secondary me-2 btn-md-square rounded-circle"
+                  href="https://www.facebook.com"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a
+                  class="btn btn-outline-secondary me-2 btn-md-square rounded-circle"
+                  href="https://www.youtube.com"
+                  ><i class="fab fa-youtube"></i
+                ></a>
+                <a
+                  class="btn btn-outline-secondary btn-md-square rounded-circle"
+                  href="https://www.linkedin.com"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row g-5">
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-item">
+              <h4 class="text-light mb-3">Why People Like us!</h4>
+              <p class="mb-4">We are the best</p>
+              <a
+                href=""
+                class="btn border-secondary py-2 px-4 rounded-pill text-primary"
+                >Read More</a
+              >
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="d-flex flex-column text-start footer-item">
+              <h4 class="text-light mb-3">Shop Info</h4>
+              <a class="btn-link" href="{% url 'about' %}">About Us</a>
+              <a class="btn-link" href="">Contact Us</a>
+              <a class="btn-link" href=".terms.html">Privacy Policy</a>
+              <a class="btn-link" href="./terms.html">Terms & Condition</a>
+              <!-- <a class="btn-link" href="">Return Policy</a>
+                    <a class="btn-link" href="">FAQs & Help</a> -->
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="d-flex flex-column text-start footer-item">
+              <h4 class="text-light mb-3">Account</h4>
+              <a class="btn-link" href="./profile.html">My Account</a>
+              <a class="btn-link" href="./shop.html">Shop details</a>
+              <a class="btn-link" href="./cart.html">Shopping Cart</a>
+              <a class="btn-link" href="">Wishlist</a>
+              <!-- <a class="btn-link" href="">Order History</a>
+                    <a class="btn-link" href="">International Orders</a> -->
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-item">
+              <h4 class="text-light mb-3">Contact</h4>
+              <p>Address: Nairobi, Kenya</p>
+              <p>Email: pethaven@gmail.com</p>
+              <p>Phone: +254727283082</p>
+              <p>Payment Accepted</p>
+              <img
+                src="{% static 'img/payment.png' %}"
+                class="img-fluid"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/740b4e3a31.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'script/main.js' %}"></script>
+  </body>
+</html>
