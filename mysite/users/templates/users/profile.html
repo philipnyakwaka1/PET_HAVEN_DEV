@@ -55,88 +55,6 @@
     box-shadow: none!important;
 }
 </style>
-<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0">
-    <a href="index.html" class="navbar-brand ms-lg-5">
-      <h1 class="m-0 text-uppercase text-dark">
-        <i class="bi bi-shop fs-1 text-primary me-3"></i>Pet Haven
-      </h1>
-    </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarCollapse"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav ms-auto py-0">
-        <a href="{% url 'home-view' %}" class="nav-item nav-link active">Home</a>
-        <div class="nav-item dropdown">
-          <a
-            href="#"
-            class="nav-link dropdown-toggle"
-            id="navbarDropdownPages"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            >Pages</a
-          >
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
-            <li><a class="dropdown-item" href="team.html">About Us</a></li>
-            <li><a class="dropdown-item" href="team.html">The Team</a></li>
-            <li><a class="dropdown-item" href="testimonial.html">Testimonials</a></li>
-            <li><a class="dropdown-item" href="blog.html">Blogs</a></li>
-          </ul>
-        </div>
-        <div class="nav-item dropdown">
-         <a
-           href="#"
-           class="nav-link dropdown-toggle"
-           id="navbarDropdownShop"
-           role="button"
-           data-bs-toggle="dropdown"
-           aria-expanded="false"
-           >Shop</a
-         >
-         <ul class="dropdown-menu bg-light rounded-0" aria-labelledby="navbarDropdownShop">
-              <li><a class="dropdown-item" href="#">Make purchase</a></li>
-              <li><a class="dropdown-item" href="#">Cart</a></li>
-              <li><a class="dropdown-item" href="#">Checkout</a></li>
-         </ul>
-       </div>
-        <div class="nav-item dropdown">
-          <a
-            href="#"
-            class="nav-link dropdown-toggle"
-            id="navbarDropdownShop"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            >Account</a
-          >
-          <ul class="dropdown-menu bg-light rounded-0" aria-labelledby="navbarDropdownShop">
-            {% if not user.is_authenticated %}
-               <li><a class="dropdown-item" href="{% url 'register' %}">Create Account</a></li>
-               <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
-            {% else %}
-               <li><a class="dropdown-item" href="{% url 'profile-view' %}">My Profile</a></li>
-               <li><a class="dropdown-item" href="#">Saved Items</a></li>
-               <li><a class="dropdown-item" href="#">Orders</a></li>
-               <li><a class="dropdown-item" href="#">Saved Items</a></li>
-               <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
-            {% endif %}
-          </ul>
-        </div>
-        <a
-          href="{% url 'sell-pet' %}"
-          class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5"
-          >SELL A PET<i class="bi bi-arrow-right"></i
-        ></a>
-      </div>
-    </div>
-  </nav>
-
   <div class="container">
     <div class="main-body">
           <div class="row gutters-sm">
@@ -159,14 +77,26 @@
                     <ul class="list-group">
                         {% for pet in pets %}
                             <li class="list-group-item">
-                                <span class="ml-auto">
-                                    <img src="{{ pet.image.url }}" alt="" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;"> - <small>{{ pet.name }}</small>
-                                </span>
-                                <span style="margin-right:1.25em; display:inline-block;">&nbsp;</span>
-                                <span class="ml-auto">
-                                    <a href="#" class="btn btn-warning btn-sm mr-2">Unlist</a>
+                                <div style="display: flex; align-items: center;">
+                                  <div>
+                                    <img src="{{ pet.image.url }}" alt="" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
+                                  </div>
+                                  <span style="margin-left: 15px;">
+                                    <small><b>name: </b>{{ pet.name }}</small>
+                                    <br>
+                                    <small><b>id: </b>{{ pet.pk }}</small>
+                                  </span>
+                                </div>
+                                <br>
+                                <div class="ml-auto">
+                                  <form method="POST" id="unlist-form" action="{% url 'profile-update' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="unlist_pet" value="{{pet.pk}}">
+                                    <!--<input class="btn btn-danger btn-sm mr-2" style="width: 70px;" value="Unlist" type="submit">-->
+                                    <a href="#" class="btn btn-warning btn-sm mr-2" onclick="submitForm()">Unlist</a>
                                     <a href="{% url 'list-pet' %}" class="btn btn-primary btn-sm">Update</a>
-                                </span>
+                                  </form>
+                                </div>
                             </li>
                         {% endfor %}
                     </ul>
@@ -287,6 +217,17 @@
 
         </div>
     </div>
+    <script>
+        function submitForm() {
+        var confirmation = window.confirm("Are you sure you want to unlist this pet?");
+        
+        if (confirmation) {
+            document.getElementById('unlist-form').submit();
+        } else {
+            alert("Unlisting canceled.");
+        }
+    }
+    </script>
 {% endblock %}
 
 

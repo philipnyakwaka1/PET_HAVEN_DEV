@@ -50,6 +50,13 @@ def update_profile(request):
                                     f'Attribute {key} does not exist in users profile')
                 user.profile.save()
                 return redirect('profile-view')
+            
+            if 'unlist_pet' in request.POST.keys():
+                  pet_id = request.POST.get('unlist_pet')
+                  pet = Pet.objects.get(pk=pet_id)
+                  pet.delete()
+                  messages.success(request, f'You have succesfully unlisted {pet.name}')
+                  return redirect('profile-view')
     return render(request, 'users/profile_information.html', {'user': request.user})
 
 @login_required
@@ -75,6 +82,13 @@ def logout_user(request):
      messages.success(request, f'You have been logged out')
      return redirect('home-view')
 
+def shop(request):
+        all_pets = Pet.objects.all()
+        dogs = Pet.objects.filter(specie='dog')
+        cats = Pet.objects.filter(specie='cat')
+        birds = Pet.objects.filter(specie='dog')
+        rabbits = Pet.objects.filter(specie='rabbit')
+        return render(request, 'users/shop.html', {'pets': all_pets, 'dogs': dogs, 'cats': cats, 'birds': birds, 'rabbits': rabbits})
 """
 def login_user(request):
      if request.method == "POST":
