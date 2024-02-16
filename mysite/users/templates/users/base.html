@@ -54,10 +54,10 @@
                     >Pages</a
                   >
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownPages">
-                    <li><a class="dropdown-item" href="team.html">About Us</a></li>
-                    <li><a class="dropdown-item" href="team.html">The Team</a></li>
-                    <li><a class="dropdown-item" href="testimonial.html">Testimonials</a></li>
-                    <li><a class="dropdown-item" href="blog.html">Blogs</a></li>
+                    <li><a class="dropdown-item" href="{% url 'about-view' %}">About Us</a></li>
+                    <li><a class="dropdown-item" href="{% url 'team-view' %}">The Team</a></li>
+                    <li><a class="dropdown-item" href="{% url 'testimonial-view' %}">Testimonials</a></li>
+                    <!--<li><a class="dropdown-item" href="{% url 'blog-view' %}">Blogs</a></li>-->
                   </ul>
                 </div>
                 <div class="nav-item dropdown">
@@ -91,7 +91,7 @@
                        <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
                     {% else %}
                        <li><a class="dropdown-item" href="{% url 'profile-view' %}">My Profile</a></li>
-                       <li><a class="dropdown-item" href="#">Orders</a></li>
+                       <li><a class="dropdown-item" href="{% url 'profile-view' %}">Orders</a></li>
                        <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
                     {% endif %}
                   </ul>

@@ -1,0 +1,97 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mx-auto mb-5" style="max-width: 800px">
+      <p class="fs-4 text-uppercase text-primary">Pet Haven's Team</p>
+      <h1 class="display-4 mb-4">Testimonials</h1>
+    </div>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Carousel indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <!-- Wrapper for carousel items -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="img-box img-fluid">
+            <img src="{% static 'images/kids and rabbits.jpg' %}" alt="" />
+          </div>
+          <p class="testimonial">
+            You guys rock!! My kids really love the pet rabbits and I'm
+            looking into getting them more rabbits. <br />
+            They are also learning responsibility. Thank you Pet haven.
+          </p>
+          <p class="overview">
+            <b>Michael Holz</b>Seo Analyst at <a href="#">OsCorp Tech.</a>
+          </p>
+          <div class="star-rating">
+            <ul class="list-inline">
+              <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+            </ul>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="img-box">
+            <img src="{% static '/images/about.jpg' %}" alt="" />
+          </div>
+          <p class="testimonial">
+            I really love my dogs. They have been my companions and have
+            helped me battle depression. <br />
+            Thank you pet haven for my furry best friends
+          </p>
+          <p class="overview">
+            <b>Paula Wilson</b>Media Analyst at <a href="#">SkyNet Inc.</a>
+          </p>
+          <div class="star-rating">
+            <ul class="list-inline">
+              <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+            </ul>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="img-box">
+            <img src="{% static '/images/catss.jpg' %}" alt="" />
+          </div>
+          <p class="testimonial">
+            Pet haven gave me the healthiest cats. I am not as lonely as I
+            used to be. I have company in my pets <br />
+            Pet haven even keeps checking up on my pets and offering any
+            support I may need.
+          </p>
+          <p class="overview">
+            <b>Antonio Moreno</b>Web Developer at <a href="#">Circle Ltd.</a>
+          </p>
+          <div class="star-rating">
+            <ul class="list-inline">
+              <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              <li class="list-inline-item">
+                <i class="fa fa-star-half-o"></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Carousel controls -->
+      <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+        <i class="fa fa-angle-left"></i>
+      </a>
+      <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </div>
+  </div>
+{% endblock %}

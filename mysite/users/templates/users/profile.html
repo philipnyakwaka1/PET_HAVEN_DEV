@@ -183,7 +183,7 @@
                       <td>{{order.pet.gender}}</td>
                       <td>KES {{order.pet.price}}</td>
                       <td><a href="mailto:{{order.customer.email}}">Email Customer</a></td>
-                      <td><a href="#">view pet profile</a></td>
+                      <td><a href="#" class="btn btn-info btn-sm mr-2" onclick="submitFormPet('{{ order.pet.pk }}')">view pet profile</a></td>
                     </tr>
                     {% endfor %}
                   </tbody>
@@ -214,7 +214,11 @@
                       <td>{{order.pet.gender}}</td>
                       <td>KES {{order.pet.price}}</td>
                       <td><a href="mailto:{{order.seller.email}}">Email Seller</a></td>
-                      <td><a href="#">view pet profile</a></td>
+                      <td><a href="#" class="btn btn-info btn-sm mr-2" onclick="submitFormPet('{{ order.pet.pk }}')">view pet profile</a></td>
+                      <form id="hiddenFormPet" method="post" action="{% url 'profile-view' %}" style="display: none;">
+                        {% csrf_token %}
+                        <input type="hidden" name="petID" id="pet_id_input">
+                    </form>
                     </tr>
                     {% endfor %}
                   </tbody>
@@ -235,6 +239,10 @@
         } else {
             alert("Unlisting canceled.");
         }
+    }
+        function submitFormPet(petId) {
+        document.getElementById("pet_id_input").value = petId;
+        document.getElementById("hiddenFormPet").submit();
     }
     </script>
 {% endblock %}

@@ -272,9 +272,12 @@
         </div>
         <div class="row" style="margin-left: 10%;">
           <div class="col-sm-6">
-            <a href="#" class="btn btn-info btn-sm">View Pet Info</a>
+            <a href="#" class="btn btn-info btn-sm" onclick="submitFormPet('{{ pet.pk }}')">View Pet Info</a>
           </div>
-          
+          <form id="hiddenFormPetID" method="post" action="{% url 'profile-view' %}" style="display: none;">
+            {% csrf_token %}
+            <input type="hidden" name="petID" id="pet_id_input">
+        </form>
           <div class="col-sm-6 text-right">
             <a href="#" class="btn btn-primary btn-sm ml-auto contact-owner-btn" data-pet-id="{{ pet.id }}">Contact Owner</a>
           </div>
@@ -312,5 +315,9 @@
       document.getElementById('hiddenFormPet').submit();
     });
   });
+  function submitFormPet(petId) {
+        document.getElementById("pet_id_input").value = petId;
+        document.getElementById("hiddenFormPetID").submit();
+    }
 </script>
 {% endblock %}

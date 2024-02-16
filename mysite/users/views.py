@@ -33,6 +33,10 @@ def terms_page(request, pet_id):
 
 @login_required
 def profile(request):
+    if request.method == 'POST':
+         if 'petID' in request.POST.keys():
+              pet_id = request.POST.get('petID')
+              return redirect('pet-profile', pet_id=pet_id)
     all_pets = Pet.objects.filter(owner=User.objects.get(pk=request.user.pk))
     if not all_pets.exists():
          all_pets = None
@@ -139,6 +143,23 @@ def order_pet(request):
           Order.objects.create(pet=pet, customer=customer, seller=seller)
           messages.success(request, f'You have succesfully listed your order. Kindly check your orders and contact the owner')
           return redirect('profile-view')
+     
+def pet_profile(request, pet_id):
+     pet = Pet.objects.get(pk=pet_id)
+     return render(request, 'users/pet_profile.html', {'pet': pet})
+
+def about_page(request):
+     return render(request, 'users/about.html')
+
+def team_page(request):
+     return render(request, 'users/team.html')
+
+def blog_page(request):
+     return render(request, 'users/blog.html')
+
+def testimonial_page(request):
+     return render(request, 'users/testimonial.html')
+
 """
 def login_user(request):
      if request.method == "POST":
