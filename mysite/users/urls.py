@@ -10,4 +10,6 @@ urlpatterns = [
     #path('login', views.login_user, name='login'),
     path('logout/', views.logout_user, name="logout"),
     path('shop', views.shop, name="shop-view"),
+    path('order', views.order_pet, name='order-view')
+    #path('terms', views.terms_page, name="terms-view"),
     ]

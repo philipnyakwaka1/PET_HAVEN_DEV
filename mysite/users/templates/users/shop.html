@@ -32,97 +32,216 @@
 .card img{
   width:100%;
 }
-
+.searchFilter {
+  margin-bottom: 20px;    
+}
+ .searchFilter.btn {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .5rem 1rem;
+    font-size: 16px;
+    border-radius: .25rem;
+    height: 50px;
+    min-width: 20px;
+}
+.searchFilter .btn-secondary {
+    color: #373a3c;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+.searchFilter .btn-secondary:hover {
+    color: #373a3c;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+.searchFilter .btn-search {
+  background-color: #00aced;
+  color: #fff;
+  border: 1px solid #00aced;
+}
+.searchFilter .btn-search:hover {
+  background-color: #b20a11;
+  color: #fff;
+  border: 1px solid #b20a11;
+}
+.searchFilter .label-icon {
+  display: none;  
+}
+.searchFilter .glyphicon {
+    margin-right: -15px;
+}
+.searchFilter .dropdown-menu .category_filters {
+  min-width: 178px;
+  width: 100%;
+  margin: 15px 0 0 -25px;
+}
+.searchFilter .dropdown-menu-right {
+    right: 170px;
+    min-width: 175px;
+  top: 90%;
+}
+.searchFilter .dropdown-menu .category_filters li {
+  list-style-type: none;
+  padding: 2px 10px;
+  font-size: 18px;
+}
+.searchFilter .dropdown-menu .category_filters label {
+  margin-left: 15px;
+}
+@media (min-width: 1400px) {
+  .ct-header .ct-jumbotron .inner {
+    max-width: 470px;
+    min-height: 230px;
+  }  
+}
+@media (max-width: 1400px) {
+  .ct-header-slider .item {
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center top;
+  }  
+}
+@media (min-width: 769px) and (max-width: 1400px) {
+  .ct-header-slider .item {
+    height: auto;  
+  }
+}
+@media (max-width: 1260px) {
+  #dots-container {
+    display: none;
+  }
+}
+@media (min-width: 992px){
+  .ct-footer2 .ct-newsletter {
+    max-width: 100%;
+  }
+  #dots-container {
+    bottom: 100px;
+  } 
+}
+@media (min-width: 768px){
+  .ct-searchbar:before {
+    height: 92px;
+    bottom: -1px;
+  }
+  .page-scrolled .navbar .navbar-nav li > * {
+    min-height: 67px;
+    height: 67px;
+  }
+  .page-scrolled .navbar .navbar-nav {
+    height: 100%!important;
+  }
+  .ct-current-facts h2 {
+    margin: 0 auto 0px;
+  }
+  .contentNews .ct-recent-news {
+    flex-direction: inherit;
+  }
+  .contentFaq .faq_question .col-sm-11 {
+    padding-right: 0px;
+  }
+  .peopleDetail h2 {
+    margin-top: -5px;
+  }
+  .searchFilter .btn {
+    min-width: 172px;  
+  }
+  .searchFilter .label-icon {
+    display: inline-block;  
+  }
+  .searchFilter .glyphicon {
+    margin-right: -5px;
+  }
+  .ct-header .ct-jumbotron {
+    top: 0;
+    margin-top: 5%;
+  }
+  .ct-header .ct-jumbotron h1 {
+    font-size: 2.5em;
+  }
+  .ct-news.ct-news--bigger h3 {
+    font-size: 41px;
+    line-height: 1.4;
+  }
+}
+@media (max-width: 768px){
+  .ct-header .ct-jumbotron {  
+    width: 80%;
+    margin: 20px 10px;
+    top: 40%;
+    width: 95%;
+  }
+  .ct-header .ct-jumbotron .inner {
+    max-width: 100%;
+  }
+  #dots-container {
+    display: none;
+  }
+  .main-section {
+    margin-top: -80px;
+  }
+  .searchFilter .dropdown-menu-right {
+  right: 0px;
+  }
+}
 </style>
-<!--
-<h1>We have the following pets</h1>
-{% for cat in cats %}
-    <ul>
-        <li>{{ cat.specie }}</li>
-    </ul>
-{% endfor %}
--->
-<!-- Modal Search Start -->
-<div
-class="modal fade"
-id="searchModal"
-tabindex="-1"
-aria-labelledby="exampleModalLabel"
-aria-hidden="true"
->
-<div class="modal-dialog modal-fullscreen">
-  <div class="modal-content rounded-0">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">
-        Search by keyword
-      </h5>
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="modal"
-        aria-label="Close"
-      ></button>
-    </div>
-    <div class="modal-body d-flex align-items-center">
-      <div class="input-group w-75 mx-auto d-flex">
-        <input
-          type="search"
-          class="form-control p-3"
-          placeholder="keywords"
-          aria-describedby="search-icon-1"
-        />
-        <span id="search-icon-1" class="input-group-text p-3"
-          ><i class="fa fa-search"></i
-        ></span>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<!-- Modal Search End -->
-
-<!-- Hero Start -->
-<div class="container-fluid hero-header">
-<div class="container py-5">
-  <div class="row g-5 align-items-center">
-    <div class="col-md-12 col-lg-7">
-      <h4 class="mb-3 text-secondary">Your Online Pet Shop</h4>
-      <h1 class="mb-5 display-3 text-primary">We Love Animals</h1>
-      <div class="position-relative mx-auto">
-        <input
-          class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill"
-          type="text"
-          placeholder="Search"
-        />
-        <button
-          type="submit"
-          class="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100"
-          style="top: 0; right: 25%"
-        >
-          Submit Now
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<!-- Hero End -->
-<!-- products -->
-<div class="product-section mt-150 mb-150">
+<br>
+<br>
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="product-filters">
-        <ul>
-          <li class="active" data-filter="*">All</li>
-          <li data-filter="dog">Dogs</li>
-          <li data-filter="cat">Cats</li>
-          <li data-filter="bird">Birds</li>
-          <li data-filter="rabbit">Rabbits</li>
-        </ul>
+  <div class="row searchFilter" >
+     <div class="col-sm-12" >
+      <div class="input-group" >
+       <input id="table_filter" type="text" class="form-control" aria-label="Text input with segmented button dropdown" placeholder="Search pet breed">
+       <div class="input-group-btn" >
+        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="label-icon" >Category</span> <span class="caret" >&nbsp;</span></button>
+        <div class="dropdown-menu dropdown-menu-right" >
+           <ul class="category_filters" >
+            <li >
+             <input class="cat_type category-input" data-label="All" id="all" value="all" name="radios" type="radio" checked><label for="all">All</label>
+            </li>
+            <li >
+             <input type="radio" name="radios" id="dog" value="dog" ><label class="category-label" for="dog" >Dogs</label>
+            </li>
+            <li >
+             <input type="radio" name="radios" id="cat" value="cat" ><label class="category-label" for="cat" >Cats</label>
+            </li>
+            <li >
+             <input type="radio" name="radios" id="bird" value="bird" ><label class="category-label" for="bird" >Birds</label>
+            </li>
+            <li >
+             <input type="radio" name="radios" id="rabbit" value="rabbit" ><label class="category-label" for="Sales" >Rabbits</label>
+            </li>
+           </ul>
+        </div>
+        <button id="searchBtn" type="button" class="btn btn-secondary btn-search" ><span class="glyphicon glyphicon-search" >&nbsp;</span> <span class="label-icon" >Search</span></button>
+       </div>
       </div>
-    </div>
+      <form id="hiddenForm" method="post" action="{% url 'shop-view' %}" style="display:none;">
+        {% csrf_token %}
+        <!-- Hidden input fields for search values -->
+        <input type="hidden" id="hiddenSearchText" name="search_text">
+        <input type="hidden" id="hiddenRadioValue" name="radio_value">
+        <input type="hidden" id="hiddenSearchBtnValue" name="search_btn_value">
+    </form>
+    <form id="hiddenFormPet" method="post" action="{% url 'shop-view' %}" style="display:none;">
+      {% csrf_token %}
+      <!-- Hidden input fields for search values -->
+      <input type="hidden" id="hiddenPetId" name="pet_id">
+  </form>
+     </div>
   </div>
+</div>
+{% if pets is not None %}
 <!--Start of gallery-->
 <div class="row">
   {% for pet in pets %}
@@ -139,6 +258,8 @@ aria-hidden="true"
             <br>
             <small><b>breed:</b>&nbsp;{{pet.breed}}</small>
             <br>
+            <small><b>price:</b>&nbsp;KES {{pet.price}}</small>
+            <br>
             {% if pet.availability %}
             <small><b>availability:</b>&nbsp;yes</small>
             <br>
@@ -147,13 +268,16 @@ aria-hidden="true"
             <br>
             <small><b>owner:</b>&nbsp;{{pet.owner.profile.first_name}}&nbsp;{{pet.owner.profile.last_name}}</small>
             <br>
-            {% endif %}
-            <small><b>owner's contact:</b>&nbsp;{{pet.owner.profile.phone}}</small>
-            <br>
-            
+            {% endif %}     
         </div>
-        <div style="margin-left: 34%; margin-bottom: 5%; margin-top: 5%;">
-          <a href="#" class="btn btn-info btn-sm mr-2">Contact Owner</a>
+        <div class="row" style="margin-left: 10%;">
+          <div class="col-sm-6">
+            <a href="#" class="btn btn-info btn-sm">View Pet Info</a>
+          </div>
+          
+          <div class="col-sm-6 text-right">
+            <a href="#" class="btn btn-primary btn-sm ml-auto contact-owner-btn" data-pet-id="{{ pet.id }}">Contact Owner</a>
+          </div>
         </div>
           </div>
       </div>
@@ -161,4 +285,32 @@ aria-hidden="true"
   {% endfor %}
 </div>
 <!--End of gallery-->
+{% else %}
+<h1>No Match Found, try again another search criteria</h1>
+{% endif %}
+<script>
+  document.getElementById('searchBtn').addEventListener('click', function () {
+      var searchText = document.getElementById('table_filter').value;
+      var radioValue = document.querySelector('input[name="radios"]:checked').value;
+      var searchBtnValue = document.getElementById('searchBtn').value;
+
+    
+      document.getElementById('hiddenSearchText').value = searchText;
+      document.getElementById('hiddenRadioValue').value = radioValue;
+      document.getElementById('hiddenSearchBtnValue').value = searchBtnValue;
+
+      
+      document.getElementById('hiddenForm').submit();
+  });
+  document.querySelectorAll('.contact-owner-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      var petId = btn.getAttribute('data-pet-id');
+      document.getElementById('hiddenPetId').value = petId;
+
+      document.getElementById('hiddenFormPet').submit();
+    });
+  });
+</script>
 {% endblock %}

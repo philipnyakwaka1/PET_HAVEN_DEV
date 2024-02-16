@@ -25,6 +25,10 @@ def register(request):
 
 def home_page(request):
     return render(request, 'users/home.html')
+"""
+def terms_page(request, pet_id):
+     return render(request, 'users/terms.html', {'pet_id': pet_id})
+"""
 
 
 @login_required
@@ -32,7 +36,13 @@ def profile(request):
     all_pets = Pet.objects.filter(owner=User.objects.get(pk=request.user.pk))
     if not all_pets.exists():
          all_pets = None
-    return render(request, 'users/profile.html', {'pets': all_pets, 'user': request.user})
+    orders_as_customer = Order.objects.filter(customer=request.user)
+    if not orders_as_customer.exists():
+         orders_as_customer = None
+    orders_as_seller = Order.objects.filter(seller=request.user)
+    if not orders_as_seller.exists():
+         orders_as_seller = None
+    return render(request, 'users/profile.html', {'pets': all_pets, 'user': request.user, 'orders_as_customer': orders_as_customer, 'orders_as_seller': orders_as_seller})
 
 @login_required
 def update_profile(request):
@@ -83,12 +93,52 @@ def logout_user(request):
      return redirect('home-view')
 
 def shop(request):
-        all_pets = Pet.objects.all()
-        dogs = Pet.objects.filter(specie='dog')
-        cats = Pet.objects.filter(specie='cat')
-        birds = Pet.objects.filter(specie='dog')
-        rabbits = Pet.objects.filter(specie='rabbit')
-        return render(request, 'users/shop.html', {'pets': all_pets, 'dogs': dogs, 'cats': cats, 'birds': birds, 'rabbits': rabbits})
+        all_pets = Pet.objects.all() 
+        if request.method == 'POST':
+             if 'pet_id' in request.POST.keys():
+                  pet_id = request.POST.get('pet_id')
+                  return render(request, 'users/terms.html', {'pet_id': pet_id})
+             else:
+                if 'search_btn_value' in request.POST.keys():
+                    radio_value = request.POST.get('radio_value', '')
+                    breed = request.POST.get('search_text', '').strip()
+                    if len(breed) > 0:
+                        if radio_value == 'dog':
+                                all_pets = Pet.objects.filter(specie='dog', breed=breed)
+                        elif radio_value == 'cat':
+                                all_pets = Pet.objects.filter(specie='cat', breed=breed)
+                        elif radio_value == 'bird':
+                                all_pets = Pet.objects.filter(specie='bird', breed=breed)
+                        elif radio_value == 'rabbit':
+                                all_pets = Pet.objects.filter(specie='rabbit', breed=breed)
+                        else:
+                                all_pets = Pet.objects.filter(breed=breed)
+                    else:
+                        if request.POST['radio_value'] == 'dog':
+                            all_pets = Pet.objects.filter(specie='dog')
+                        elif request.POST['radio_value'] == 'cat':
+                            all_pets = Pet.objects.filter(specie='cat')
+                        elif request.POST['radio_value'] == 'bird':
+                            all_pets = Pet.objects.filter(specie='bird')
+                        elif request.POST['radio_value'] == 'rabbit':
+                            all_pets = Pet.objects.filter(specie='rabbit')
+                        else:
+                                all_pets = Pet.objects.all()
+                else:
+                    all_pets = Pet.objects.all()
+        if not all_pets.exists():
+             all_pets = None      
+        return render(request, 'users/shop.html', {'pets': all_pets})
+
+def order_pet(request):
+     if request.method == 'POST':
+          pet_id = request.POST.get('pet_id')
+          pet = Pet.objects.get(pk=pet_id)
+          customer = User.objects.get(pk=request.user.pk)
+          seller = User.objects.get(pk=pet.owner.pk)
+          Order.objects.create(pet=pet, customer=customer, seller=seller)
+          messages.success(request, f'You have succesfully listed your order. Kindly check your orders and contact the owner')
+          return redirect('profile-view')
 """
 def login_user(request):
      if request.method == "POST":

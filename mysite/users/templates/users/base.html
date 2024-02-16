@@ -71,9 +71,8 @@
                    >Shop</a
                  >
                  <ul class="dropdown-menu bg-light rounded-0" aria-labelledby="navbarDropdownShop">
-                      <li><a class="dropdown-item" href="#">Make purchase</a></li>
-                      <li><a class="dropdown-item" href="#">Cart</a></li>
-                      <li><a class="dropdown-item" href="#">Checkout</a></li>
+                      <li><a class="dropdown-item" href="{% url 'shop-view' %}">Make purchase</a></li>
+                      <li><a class="dropdown-item" href="{% url 'sell-pet' %}">Sell Pet</a></li>
                  </ul>
                </div>
                 <div class="nav-item dropdown">
@@ -92,9 +91,7 @@
                        <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
                     {% else %}
                        <li><a class="dropdown-item" href="{% url 'profile-view' %}">My Profile</a></li>
-                       <li><a class="dropdown-item" href="#">Saved Items</a></li>
                        <li><a class="dropdown-item" href="#">Orders</a></li>
-                       <li><a class="dropdown-item" href="#">Saved Items</a></li>
                        <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
                     {% endif %}
                   </ul>
