@@ -95,7 +95,7 @@ def logout_user(request):
      logout(request)
      messages.success(request, f'You have been logged out')
      return redirect('home-view')
-
+@login_required
 def shop(request):
         all_pets = Pet.objects.all() 
         if request.method == 'POST':
