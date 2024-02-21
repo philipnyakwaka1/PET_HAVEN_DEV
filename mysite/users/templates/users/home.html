@@ -2,49 +2,8 @@
 {% load static %}
 
 {% block content %}
-   
- <!-- Navbar End -->
 
- <!-- Modal Search Start -->
- <div
-   class="modal fade"
-   id="searchModal"
-   tabindex="-1"
-   aria-labelledby="exampleModalLabel"
-   aria-hidden="true"
- >
-   <div class="modal-dialog modal-fullscreen">
-     <div class="modal-content rounded-0">
-       <div class="modal-header">
-         <h5 class="modal-title" id="exampleModalLabel">
-           Search by keyword
-         </h5>
-         <button
-           type="button"
-           class="btn-close"
-           data-bs-dismiss="modal"
-           aria-label="Close"
-         ></button>
-       </div>
-       <div class="modal-body d-flex align-items-center">
-         <div class="input-group w-75 mx-auto d-flex">
-           <input
-             type="search"
-             class="form-control p-3"
-             placeholder="keywords"
-             aria-describedby="search-icon-1"
-           />
-           <span id="search-icon-1" class="input-group-text p-3"
-             ><i class="fa fa-search"></i
-           ></span>
-         </div>
-       </div>
-     </div>
-   </div>
- </div>
- <!-- Modal Search End -->
-
- <!-- Hero Start -->
+<!-- Hero Start -->
  <div class="container-fluid hero-header">
    <div class="container py-5">
      <div class="row g-5 align-items-center">
@@ -71,89 +30,58 @@
  </div>
  <!-- Hero End -->
  <!-- About Start -->
- <div class="container">
+<div class="container mt-5">
+  <div class="mx-auto text-center mb-0" style="max-width: 800px;">
+    <p class="fs-4 text-uppercase text-center text-primary">
+      Get your Furry Best Friend
+    </p>
+  </div>
+  <strong><p class="h4 ml-auto mr-auto p-0 mb-0">
+    Welcome to Furry Friends, your ultimate destination for all things furry
+    and feathery!!
+  </p></strong>
    <div class="row py-5">
-     <div class="col-lg-7 pb-5 pb-lg-0 px-3 px-lg-5">
-       <div class="mx-auto text-center mb-5" style="max-width: 800px">
-         <p class="fs-4 text-uppercase text-center text-primary">
-           Get your Furry Best Friend
-         </p>
-         <h1 class="display-3">About Us</h1>
-       </div>
-       <h5 class="text-muted mb-3">
-         Welcome to Pet Haven, your ultimate destination for all things furry
-         and feathery!!
-       </h5>
-       <p class="mb-4">
-         At Pet Haven, we understand that pets are not just animals; they are
+     <div class="col-lg-7 pb-4 pt-4 pb-lg-0 px-3 px-lg-5">
+       <p class="mb-4 fs-6 p-0">
+         At Furry Friends, we understand that pets are not just animals; they are
          cherished members of your family, bringing joy, love, and
          companionship to your life. Our online pet shop is designed with the
          utmost care and dedication to provide a seamless and enjoyable
          experience for both you and your future four-legged friend.
        </p>
-       <p class="mb-4">
-         Pet Haven was founded with a passion for enhancing the bond between
+       <p class="mb-4 fs-6 p-0">
+         Furry Friends was founded with a passion for enhancing the bond between
          humans and animals. Our team of pet enthusiasts and experts is
          committed to delivering a diverse selection of pets, pet supplies,
          and accessories to cater to the unique needs and preferences of
          every pet lover.
        </p>
-
-       <!-- <ul class="list-inline">
-         <li>
-           <h5>
-             <i class="fa fa-check-double text-secondary mr-3"></i>Best In
-             Industry
-           </h5>
-         </li>
-         <li>
-           <h5>
-             <i class="fa fa-check-double text-secondary mr-3"></i>Emergency
-             Services
-           </h5>
-         </li>
-         <li>
-           <h5>
-             <i class="fa fa-check-double text-secondary mr-3"></i>24/7
-             Customer Support
-           </h5>
-         </li>
-       </ul> -->
-       <a href="./about.html" class="btn btn-lg btn-primary mt-3 px-4"
-         >Learn More</a
-       >
      </div>
-     <div class="col-lg-5">
+     <div class="col-lg-4">
        <div class="row px-3">
-         <div class="col-12 p-0">
-           <img class="img-fluid w-100" src="{% static 'images/carousel-1.jpg' %}" alt="" />
+         <div class="col-12 p-1">
+           <img class="img-fluid w-100 rounded" src="{% static 'images/carousel-1.jpg' %}" alt="" />
          </div>
-         <div class="col-6 p-0">
-           <img class="img-fluid w-100" src="{% static 'images/birddd.jpg' %}" alt="" />
+         <div class="col-6 p-1">
+           <img class="img-fluid w-100 rounded" src="{% static 'images/birddd.jpg' %}" alt="" />
          </div>
-         <div class="col-6 p-0">
-           <img class="img-fluid w-100" src="{% static 'images/about-1.jpg' %}" alt="" />
+         <div class="col-6 p-1">
+           <img class="img-fluid w-100 rounded" src="{% static 'images/about-1.jpg' %}" alt="" />
          </div>
        </div>
      </div>
    </div>
+   <!--Additional Info here-->
  </div>
  <!-- About End -->
 
  <!-- Services Start -->
- <div class="container-fluid services py-5">
+ <strong><p class="h4 ml-auto mr-auto p-0 mb-0 mt-2 fs-2">Our Pets</p></strong>
+ <div class="container-fluid services py-5 pt-0 pb-0 mb-0" style="background-color: burlywood;">
    <div class="container py-5">
-     <div class="mx-auto text-center mb-5" style="max-width: 800px">
-       <p class="fs-4 text-uppercase text-center text-primary">
-         Get your Furry Best Friend
-       </p>
-       <h1 class="display-3">Our Pets</h1>
-     </div>
      <div class="row g-4">
        <div class="col-lg-6">
-         <div
-           class="services-item bg-light border-4 border-end border-primary rounded p-4"
-         >
+         <div class="services-item bg-light border-4 border-end border-primary rounded p-4">
            <div class="row align-items-center">
              <div class="col-8">
                <div class="services-content text-end">
@@ -300,262 +228,49 @@
  
  <!-- Team Start -->
  <div class="container-fluid team py-5">
-   <div class="container py-5">
-     <div class="text-center mx-auto mb-5" style="max-width: 800px">
-       <p class="fs-4 text-uppercase text-primary">Pet Haven's Team</p>
-       <h1 class="display-4 mb-4">Our specialists</h1>
+   <div class="container py-5 pt-0">
+     <div class="text-center mx-auto mt-0 mb-0" style="max-width: 800px">
+       <h1 class="fs-2 mb-4 mt-0">Furry Friends's Team</h1>
      </div>
-     <div class="row g-4">
+     <div class="row g-4 pt-0 pb-4 d-flex justify-content-center" style="background-color: yellowgreen;">
        <div class="col-md-6 col-lg-6 col-xl-3">
          <div class="team-item">
            <div class="team-img rounded-top">
-             <img
-               src="{% static 'images/doc.jpg' %}"
-               class="img-fluid w-100 rounded-top bg-light"
-               alt=""
-             />
-           </div>
-           <div class="team-text rounded-bottom text-center p-4">
-             <h3 class="text-white">Oliva Mia</h3>
-             <p class="mb-0 text-white">Chief vetinarian</p>
-           </div>
-           <div class="team-social">
-             <a
-               class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2"
-               href="https://twitter.com/home?lang=en"
-               ><i class="fab fa-twitter"></i
-             ></a>
-             <a
-               class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2"
-               href="https://web.facebook.com/"
-               ><i class="fab fa-facebook-f"></i
-             ></a>
-             <a
-               class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2"
-               href="https://www.linkedin.com"
-               ><i class="fab fa-linkedin-in"></i
-             ></a>
-             <a
-               class="btn btn-light btn-light-outline-0 btn-square rounded-circle"
-               href="#"
-               ><i class="fab fa-instagram"></i
-             ></a>
-           </div>
-         </div>
-       </div>
-       <div class="col-md-6 col-lg-6 col-xl-3">
-         <div class="team-item">
-           <div class="team-img rounded-top">
-             <img
-               src="{% static 'images/Joan .jpg' %}"
-               class="img-fluid w-100 rounded-top bg-light"
-               alt=""
-             />
+             <img src="{% static 'images/Philip.jpg' %}" class="img-fluid w-100 rounded-top bg-light" alt=""/>
            </div>
            <div class="team-text rounded-bottom text-center p-4">
              <h3 class="text-white">Joan Waithira</h3>
              <p class="mb-0 text-white">Team Lead</p>
            </div>
            <div class="team-social">
-             <a
-               class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2"
-               href="https://twitter.com/home?lang=en"
-               ><i class="fab fa-twitter"></i
-             ></a>
-             <a
-               class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2"
-               href="https://web.facebook.com/"
-               ><i class="fab fa-facebook-f"></i
-             ></a>
-             <a
-               class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2"
-               href="https://www.linkedin.com"
-               ><i class="fab fa-linkedin-in"></i
-             ></a>
-             <a
-               class="btn btn-light btn-light-outline-0 btn-square rounded-circle"
-               href="#"
-               ><i class="fab fa-instagram"></i
-             ></a>
+             <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2" href="https://twitter.com/home?lang=en"><i class="fab fa-twitter"></i></a>
+             <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2" href="https://web.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+             <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2" href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+             <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle" href="#"><i class="fab fa-instagram"></i></a>
            </div>
          </div>
        </div>
        <div class="col-md-6 col-lg-6 col-xl-3">
-         <div class="team-item">
-           <div class="team-img rounded-top">
-             <img
-               src="{% static 'images/man.jpg' %}"
-               class="img-fluid w-100 rounded-top bg-light"
-               alt=""
-             />
-           </div>
-           <div class="team-text rounded-bottom text-center p-4">
-             <h3 class="text-white">Steve Lovy</h3>
-             <p class="mb-0 text-white">Pet Manager</p>
-           </div>
-           <div class="team-social">
-             <a
-               class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2"
-               href="https://twitter.com/home?lang=en"
-               ><i class="fab fa-twitter"></i
-             ></a>
-             <a
-               class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2"
-               href="https://web.facebook.com/"
-               ><i class="fab fa-facebook-f"></i
-             ></a>
-             <a
-               class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2"
-               href="https://www.linkedin.com"
-               ><i class="fab fa-linkedin-in"></i
-             ></a>
-             <a
-               class="btn btn-light btn-light-outline-0 btn-square rounded-circle"
-               href="#"
-               ><i class="fab fa-instagram"></i
-             ></a>
-           </div>
-         </div>
-       </div>
-       <div class="col-md-6 col-lg-6 col-xl-3">
-         <div class="team-item">
-           <div class="team-img rounded-top">
-             <img
-               src="{% static 'images/male.jpg' %}"
-               class="img-fluid w-100 rounded-top bg-light"
-               alt=""
-             />
-           </div>
-           <div class="team-text rounded-bottom text-center p-4">
-             <h3 class="text-white">Maxwell Livid</h3>
-             <p class="mb-0 text-white">Animal Specialist</p>
-           </div>
-           <div class="team-social">
-             <a
-               class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2"
-               href="https://twitter.com/home?lang=en"
-               ><i class="fab fa-twitter"></i
-             ></a>
-             <a
-               class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2"
-               href="https://web.facebook.com/"
-               ><i class="fab fa-facebook-f"></i
-             ></a>
-             <a
-               class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2"
-               href="#"
-               ><i class="fab fa-linkedin-in"></i
-             ></a>
-             <a
-               class="btn btn-light btn-light-outline-0 btn-square rounded-circle"
-               href="#"
-               ><i class="fab fa-instagram"></i
-             ></a>
-           </div>
-         </div>
-       </div>
+        <div class="team-item">
+          <div class="team-img rounded-top">
+            <img src="{% static 'images/Joan .jpg' %}" class="img-fluid w-100 rounded-top bg-light" alt=""/>
+          </div>
+          <div class="team-text rounded-bottom text-center p-4">
+            <h3 class="text-white">Joan Waithira</h3>
+            <p class="mb-0 text-white">Team Lead</p>
+          </div>
+          <div class="team-social">
+            <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2" href="https://twitter.com/home?lang=en"><i class="fab fa-twitter"></i></a>
+            <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2" href="https://web.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+            <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2" href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+            <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle" href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
      </div>
    </div>
  </div>
  <!-- Team End -->
-
- <!-- Testimonial Start -->
-
- <div class="container py-5">
-   <div class="text-center mx-auto mb-5" style="max-width: 800px">
-     <p class="fs-4 text-uppercase text-primary">Pet Haven's Team</p>
-     <h1 class="display-4 mb-4">Testimonials</h1>
-   </div>
-   <div id="myCarousel" class="carousel slide" data-ride="carousel">
-     <!-- Carousel indicators -->
-     <ol class="carousel-indicators">
-       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-       <li data-target="#myCarousel" data-slide-to="1"></li>
-       <li data-target="#myCarousel" data-slide-to="2"></li>
-     </ol>
-     <!-- Wrapper for carousel items -->
-     <div class="carousel-inner">
-       <div class="carousel-item active">
-         <div class="img-box img-fluid">
-           <img src="{% static 'images/kids and rabbits.jpg' %}" alt="" />
-         </div>
-         <p class="testimonial">
-           You guys rock!! My kids really love the pet rabbits and I'm
-           looking into getting them more rabbits. <br />
-           They are also learning responsibility. Thank you Pet haven.
-         </p>
-         <p class="overview">
-           <b>Michael Holz</b>Seo Analyst at <a href="#">OsCorp Tech.</a>
-         </p>
-         <div class="star-rating">
-           <ul class="list-inline">
-             <li class="list-inline-item"><i class="fa fa-star"></i></li>
-             <li class="list-inline-item"><i class="fa fa-star"></i></li>
-             <li class="list-inline-item"><i class="fa fa-star"></i></li>
-             <li class="list-inline-item"><i class="fa fa-star"></i></li>
-             <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-           </ul>
-         </div>
-       </div>
-       <div class="carousel-item">
-         <div class="img-box">
-           <img src="{% static '/images/about.jpg' %}" alt="" />
-         </div>
-         <p class="testimonial">
-           I really love my dogs. They have been my companions and have
-           helped me battle depression. <br />
-           Thank you pet haven for my furry best friends
-         </p>
-         <p class="overview">
-           <b>Paula Wilson</b>Media Analyst at <a href="#">SkyNet Inc.</a>
-         </p>
-         <div class="star-rating">
-           <ul class="list-inline">
-             <li class="list-inline-item"><i class="fa fa-star"></i></li>
-             <li class="list-inline-item"><i class="fa fa-star"></i></li>
-             <li class="list-inline-item"><i class="fa fa-star"></i></li>
-             <li class="list-inline-item"><i class="fa fa-star"></i></li>
-             <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
-           </ul>
-         </div>
-       </div>
-       <div class="carousel-item">
-         <div class="img-box">
-           <img src="{% static '/images/catss.jpg' %}" alt="" />
-         </div>
-         <p class="testimonial">
-           Pet haven gave me the healthiest cats. I am not as lonely as I
-           used to be. I have company in my pets <br />
-           Pet haven even keeps checking up on my pets and offering any
-           support I may need.
-         </p>
-         <p class="overview">
-           <b>Antonio Moreno</b>Web Developer at <a href="#">Circle Ltd.</a>
-         </p>
-         <div class="star-rating">
-           <ul class="list-inline">
-             <li class="list-inline-item"><i class="fa fa-star"></i></li>
-             <li class="list-inline-item"><i class="fa fa-star"></i></li>
-             <li class="list-inline-item"><i class="fa fa-star"></i></li>
-             <li class="list-inline-item"><i class="fa fa-star"></i></li>
-             <li class="list-inline-item">
-               <i class="fa fa-star-half-o"></i>
-             </li>
-           </ul>
-         </div>
-       </div>
-     </div>
-     <!-- Carousel controls -->
-     <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-       <i class="fa fa-angle-left"></i>
-     </a>
-     <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-       <i class="fa fa-angle-right"></i>
-     </a>
-   </div>
- </div>
- <!-- Testimonial End -->
-
  <!-- Footer Start -->
  <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
    <div class="container py-5">
@@ -566,7 +281,7 @@
        <div class="row g-4 footer">
          <div class="col-lg-3">
            <a href="index.html">
-             <h1 class="text-primary mb-0">Pet Haven</h1>
+             <h1 class="text-primary mb-0">Furry Friends</h1>
              <p class="text-secondary mb-0">We love Animals</p>
            </a>
          </div>
@@ -668,7 +383,7 @@
        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
          <span class="text-light"
            ><a href="#"
-             ><i class="fas fa-copyright text-light me-2"></i>Pet Haven</a
+             ><i class="fas fa-copyright text-light me-2"></i>Furry Friends</a
            >, All right reserved.</span
          >
        </div>
