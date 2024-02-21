@@ -140,23 +140,16 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-#if  DEBUG:
+if  DEBUG:
     # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
     # and renames the files with unique names for each version to support long-term caching
-    #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-if DEBUG:
-        STATICFILES_DIRS = [
-            os.path.join(BASE_DIR, 'static')
-       ]
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-"""
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
-"""
 
 # Added a new setting for media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
