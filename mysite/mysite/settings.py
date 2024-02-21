@@ -36,7 +36,7 @@ else:
             'NAME': 'db.sqlite3',
         }}
 
-ALLOWED_HOSTS = ['pet-haven-dev-8.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
