@@ -6,7 +6,6 @@ dj-database-url==2.1.0
 Django==5.0.1
 django-crispy-forms==2.0
 django-heroku==0.3.1
-django-users @ file:///home/nygma/ALX_SE/portfolio_project/PET_HAVEN_DEV/django-users/dist/django-users-0.1.tar.gz
 djangorestframework==3.14.0
 mysqlclient==2.2.1
 pillow==10.2.0
