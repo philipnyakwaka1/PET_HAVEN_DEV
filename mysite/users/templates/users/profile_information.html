@@ -16,19 +16,19 @@
         <h1>Create your Profile</h1>
         <form class="profile" method="POST" , action="{% url 'profile-view' %}">
           <label for="first_name">First Name:<span>*</span></label>
-          <input type="text" name="first_name" id="first_name" required />
+          <input type="text" name="first_name" id="first_name" placeholder="Enter your first name" required/>
           <br />
           <label for="last_name">Last Name:<span>*</span></label>
-          <input type="text" name="last_name" required id="last_name" />
+          <input type="text" name="last_name" id="last_name" placeholder="Enter your last name" required/>
           <br />
           <label for="profile_pic">Update profile picture:<span>*</span></label>
-          <input type="file" name="profile_pic" accept="image/*" id="profile_pic" required/>
+          <input type="file" name="profile_pic" accept="image/*" id="profile_pic"/>
           <br />
           <label for="address">Address:<span>*</span></label>
-          <input type="text" name="address" id ="address" required />
+          <input type="text" name="address" id ="address" placeholder="Enter your address"/>
           <br />
           <label for="phone">Phone:<span>*</span></label>
-          <input type="text" name="phone" id ="phone" required />
+          <input type="text" name="phone" id ="phone" placeholder="Enter your phone number" required />
           <br />
           <input class="btn btn-primary" type="submit" value="Submit" name="profile_update" />
         </form>
