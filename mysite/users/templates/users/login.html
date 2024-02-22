@@ -24,6 +24,7 @@
     background-clip: border-box;
     border: 0 solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
+    padding: 2px;
   }
 
   .card-body {
@@ -69,10 +70,11 @@
       {{ form | crispy }}
     </fieldset>
     <div>
-      <button class="btn" type="submit">Login</button>
+      <button class="btn btn-primary" type="submit">Login</button>
     </div>
   </form>
   <div>
+    <hr />
     <small
       >Need an Account?
       <a class="btn btn-primary" href="{% url 'register' %}">Sign Up</a></small
