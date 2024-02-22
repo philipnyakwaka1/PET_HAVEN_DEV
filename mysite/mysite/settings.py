@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=m+lko+61h=nig4)g16k57ie&b(7j3r*y5zkgw83-zp+_c1e!h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 if not DEBUG:
     DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
@@ -34,7 +34,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'db.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
         }}
 
 ALLOWED_HOSTS = ['*']
