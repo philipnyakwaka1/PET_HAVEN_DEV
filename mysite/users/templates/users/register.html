@@ -1,5 +1,46 @@
 {% extends 'users/base.html' %} {% load crispy_forms_tags %} {% block content %}
 <style>
+  .register {
+    width: 360px;
+    height: 450px;
+    margin: auto;
+    background-color: #c2bcd9;
+    border-radius: 3px;
+    padding: 10px;
+  }
+  h1 {
+    text-align: center;
+    padding-top: 15px;
+  }
+  h4 {
+    text-align: center;
+  }
+  form {
+    width: 300px;
+    margin-left: 20px;
+  }
+  form label {
+    display: flex;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  form input {
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline: none;
+  }
+  input[type="button"] {
+    width: 320px;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #ffb524;
+    color: white;
+    font-size: 18px;
+  }
   body {
     margin-top: 20px;
     color: #1a202c;
@@ -57,26 +98,28 @@
     box-shadow: none !important;
   }
 </style>
-<div class="col-md-3 mx-auto">
-  <form class="card" method="POST">
-    {% csrf_token %}
-    <fieldset>
-      <legend style="text-align: center">Join Today</legend>
-      <hr />
-      {{ form | crispy }}
-    </fieldset>
+<div class="register">
+  <div class="col-md-3 mx-auto">
+    <form class="card" method="POST">
+      {% csrf_token %}
+      <fieldset>
+        <legend style="text-align: center">Join Today</legend>
+        <hr />
+        {{ form | crispy }}
+      </fieldset>
+      <div>
+        <button class="btn btn-primary" type="submit">Sign Up</button>
+      </div>
+    </form>
+    <hr />
     <div>
-      <button class="btn btn-primary" type="submit">Sign Up</button>
+      <small
+        >Already have an Account?
+        <a class="btn btn-primary mb-2" href="{% url 'login' %}"
+          >Sign In</a
+        ></small
+      >
     </div>
-  </form>
-  <hr />
-  <div>
-    <small
-      >Already have an Account?
-      <a class="btn btn-primary mb-2" href="{% url 'login' %}"
-        >Sign In</a
-      ></small
-    >
   </div>
 </div>
 {% endblock %}

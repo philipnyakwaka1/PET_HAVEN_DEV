@@ -10,6 +10,47 @@
   .main-body {
     padding: 15px;
   }
+  .login {
+    width: 360px;
+    height: 450px;
+    margin: auto;
+    background-color: #c2bcd9;
+    border-radius: 3px;
+    padding: 10px;
+  }
+  h1 {
+    text-align: center;
+    padding-top: 15px;
+  }
+  h4 {
+    text-align: center;
+  }
+  form {
+    width: 300px;
+    margin-left: 20px;
+  }
+  form label {
+    display: flex;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  form input {
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline: none;
+  }
+  input[type="button"] {
+    width: 320px;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #ffb524;
+    color: white;
+    font-size: 18px;
+  }
   .card {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   }
@@ -62,26 +103,28 @@
 {% else %}
 <br />
 
-<div class="col-md-3 mx-auto">
-  <form class="card" method="POST">
-    {% csrf_token %}
-    <fieldset>
-      <legend class="mt-2">Login</legend>
-      <hr />
-      {{ form | crispy }}
-    </fieldset>
+<div class="login">
+  <div class="col-md-3 mx-auto">
+    <form class="card" method="POST">
+      {% csrf_token %}
+      <fieldset>
+        <legend class="mt-2">Login</legend>
+        <hr />
+        {{ form | crispy }}
+      </fieldset>
+      <div>
+        <button class="btn btn-primary" type="submit">Login</button>
+      </div>
+    </form>
     <div>
-      <button class="btn btn-primary" type="submit">Login</button>
+      <hr />
+      <small
+        >Need an Account?
+        <a class="btn btn-primary mb-2" href="{% url 'register' %}"
+          >Sign Up</a
+        ></small
+      >
     </div>
-  </form>
-  <div>
-    <hr />
-    <small
-      >Need an Account?
-      <a class="btn btn-primary mb-2" href="{% url 'register' %}"
-        >Sign Up</a
-      ></small
-    >
   </div>
 </div>
 {% endif %} {% endblock %}
