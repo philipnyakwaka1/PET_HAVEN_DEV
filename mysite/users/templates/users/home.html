@@ -11,18 +11,48 @@
          <h4 class="mb-3 text-secondary">Your Online Pet Shop</h4>
          <h1 class="mb-5 display-3 text-primary">We Love Animals</h1>
          <div class="position-relative mx-auto">
-           <input
-             class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill"
-             type="text"
-             placeholder="Search Pets"
-           />
-           <button
-             type="submit"
-             class="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100"
-             style="top: 0; right: 25%"
-           >
-             Search
-           </button>
+          <div class="row searchFilter" >
+            <div class="col-sm-12" >
+             <div class="input-group" >
+              <input id="table_filter" type="text" class="form-control" aria-label="Text input with segmented button dropdown" placeholder="Search pet breed">
+              <div class="input-group-btn" >
+               <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="label-icon" >Category</span> <span class="caret" >&nbsp;</span></button>
+               <div class="dropdown-menu dropdown-menu-right" >
+                  <ul class="category_filters" >
+                   <li >
+                    <input class="cat_type category-input" data-label="All" id="all" value="all" name="radios" type="radio" checked><label for="all">All</label>
+                   </li>
+                   <li >
+                    <input type="radio" name="radios" id="dog" value="dog" ><label class="category-label" for="dog" >Dogs</label>
+                   </li>
+                   <li >
+                    <input type="radio" name="radios" id="cat" value="cat" ><label class="category-label" for="cat" >Cats</label>
+                   </li>
+                   <li >
+                    <input type="radio" name="radios" id="bird" value="bird" ><label class="category-label" for="bird" >Birds</label>
+                   </li>
+                   <li >
+                    <input type="radio" name="radios" id="rabbit" value="rabbit" ><label class="category-label" for="Sales" >Rabbits</label>
+                   </li>
+                  </ul>
+               </div>
+               <button id="searchBtn" type="button" class="btn btn-secondary btn-search" ><span class="glyphicon glyphicon-search" >&nbsp;</span> <span class="label-icon" >Search</span></button>
+              </div>
+             </div>
+             <form id="hiddenForm" method="post" action="{% url 'shop-view' %}" style="display:none;">
+               {% csrf_token %}
+               <!-- Hidden input fields for search values -->
+               <input type="hidden" id="hiddenSearchText" name="search_text">
+               <input type="hidden" id="hiddenRadioValue" name="radio_value">
+               <input type="hidden" id="hiddenSearchBtnValue" name="search_btn_value">
+           </form>
+           <form id="hiddenFormPet" method="post" action="{% url 'shop-view' %}" style="display:none;">
+             {% csrf_token %}
+             <!-- Hidden input fields for search values -->
+             <input type="hidden" id="hiddenPetId" name="pet_id">
+         </form>
+            </div>
+         </div>
          </div>
        </div>
      </div>
@@ -77,7 +107,7 @@
 
  <!-- Services Start -->
  <strong><p class="h4 ml-auto mr-auto p-0 mb-0 mt-2 fs-2">Our Pets</p></strong>
- <div class="container-fluid services py-5 pt-0 pb-0 mb-0" style="background-color: burlywood;">
+ <div class="container-fluid services py-5 pt-0 pb-0 mb-0">
    <div class="container py-5">
      <div class="row g-4">
        <div class="col-lg-6">
@@ -93,7 +123,7 @@
                  <a
                    href="./shop.html"
                    class="btn btn-primary btn-primary-outline-0 rounded-pill py-2 px-4"
-                   >Make Order</a
+                   >Buy Pet</a
                  >
                </div>
              </div>
@@ -138,7 +168,7 @@
                  <a
                    href="./shop.html"
                    class="btn btn-primary btn-primary-outline-0 rounded-pill py-2 px-4"
-                   >Make Order</a
+                   >Buy Pet</a
                  >
                </div>
              </div>
@@ -160,7 +190,7 @@
                  <a
                    href="./shop.html"
                    class="btn btn-primary btn-primary-outline-0 rounded-pill py-2 px-4"
-                   >Make Order</a
+                   >Buy Pet</a
                  >
                </div>
              </div>
@@ -204,7 +234,7 @@
                  <a
                    href="./shop.html"
                    class="btn btn-primary btn-primary-outline-0 rounded-pill py-2 px-4"
-                   >Make Order</a
+                   >Buy Pet</a
                  >
                </div>
              </div>
@@ -227,148 +257,69 @@
  <!-- Services End -->
  
  <!-- Team Start -->
- <div class="container-fluid team py-5">
+ <!--
+ <div class="container-fluid team py-5 pt-0 pb-0">
    <div class="container py-5 pt-0">
      <div class="text-center mx-auto mt-0 mb-0" style="max-width: 800px">
-       <h1 class="fs-2 mb-4 mt-0">Furry Friends's Team</h1>
+       <h1 class="fs-2 mb-4 mt-0">Furry Friends' Team</h1>
      </div>
-     <div class="row g-4 pt-0 pb-4 d-flex justify-content-center" style="background-color: yellowgreen;">
+     <div class="row g-4 pt-0 pb-4 d-flex justify-content-center mb-0">
        <div class="col-md-6 col-lg-6 col-xl-3">
          <div class="team-item">
            <div class="team-img rounded-top">
-             <img src="{% static 'images/Philip.jpg' %}" class="img-fluid w-100 rounded-top bg-light" alt=""/>
+             <img src="{% static 'images/Philip.jpg' %}" class="img-fluid w-100 rounded-top bg-light" alt="" style="height: 200px;"/>
            </div>
            <div class="team-text rounded-bottom text-center p-4">
-             <h3 class="text-white">Joan Waithira</h3>
-             <p class="mb-0 text-white">Team Lead</p>
+             <h3 class="text-white">Philip Nyakwaka</h3>
+             <p class="mb-0 text-white">Back-end engineer</p>
            </div>
            <div class="team-social">
-             <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2" href="https://twitter.com/home?lang=en"><i class="fab fa-twitter"></i></a>
-             <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2" href="https://web.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-             <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2" href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
-             <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle" href="#"><i class="fab fa-instagram"></i></a>
+             <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2" href="https://twitter.com/ominaphillip18"><i class="fab fa-twitter"></i></a>
+             <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2" href="https://web.facebook.com/phillip.nyakwaka.73"><i class="fab fa-facebook-f"></i></a>
+             <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2" href="https://www.linkedin.com/in/philip-nyakwaka-30881b213/"><i class="fab fa-linkedin-in"></i></a>
+             <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle" href="https://www.instagram.com/philnygma/"><i class="fab fa-instagram"></i></a>
            </div>
          </div>
        </div>
        <div class="col-md-6 col-lg-6 col-xl-3">
         <div class="team-item">
           <div class="team-img rounded-top">
-            <img src="{% static 'images/Joan .jpg' %}" class="img-fluid w-100 rounded-top bg-light" alt=""/>
+            <img src="{% static 'images/Joan .jpg' %}" class="img-fluid w-110 rounded-top bg-light" alt="" style="height: 200px;"/>
           </div>
           <div class="team-text rounded-bottom text-center p-4">
             <h3 class="text-white">Joan Waithira</h3>
-            <p class="mb-0 text-white">Team Lead</p>
+            <p class="mb-0 text-white">Front-end engineer</p>
           </div>
           <div class="team-social">
             <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2" href="https://twitter.com/home?lang=en"><i class="fab fa-twitter"></i></a>
             <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2" href="https://web.facebook.com/"><i class="fab fa-facebook-f"></i></a>
             <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2" href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
-            <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle" href="#"><i class="fab fa-instagram"></i></a>
+            <a class="btn btn-light btn-light-outline-0 btn-square rounded-circle" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
       </div>
      </div>
    </div>
  </div>
- <!-- Team End -->
+ - Team End -->
+ 
  <!-- Footer Start -->
- <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
-   <div class="container py-5">
-     <div
-       class="pb-4 mb-4"
-       style="border-bottom: 1px solid rgba(226, 175, 24, 0.5)"
-     >
-       <div class="row g-4 footer">
-         <div class="col-lg-3">
-           <a href="index.html">
-             <h1 class="text-primary mb-0">Furry Friends</h1>
-             <p class="text-secondary mb-0">We love Animals</p>
-           </a>
-         </div>
-         <div class="col-lg-6">
-           <div class="position-relative mx-auto">
-             <input
-               class="form-control border-0 w-100 py-3 px-4 rounded-pill"
-               type="email"
-               placeholder="Your Email"
-             />
-             <button
-               type="submit"
-               class="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill text-white"
-               style="top: 0; right: 0"
-             >
-               Subscribe Now
-             </button>
-           </div>
-         </div>
-         <div class="col-lg-3">
-           <div class="d-flex justify-content-end pt-3">
-             <a
-               class="btn btn-outline-secondary me-2 btn-md-square rounded-circle"
-               href="https://www.twitter.com"
-               ><i class="fab fa-twitter"></i
-             ></a>
-             <a
-               class="btn btn-outline-secondary me-2 btn-md-square rounded-circle"
-               href="https://www.facebook.com"
-               ><i class="fab fa-facebook-f"></i
-             ></a>
-             <a
-               class="btn btn-outline-secondary me-2 btn-md-square rounded-circle"
-               href="https://www.youtube.com"
-               ><i class="fab fa-youtube"></i
-             ></a>
-             <a
-               class="btn btn-outline-secondary btn-md-square rounded-circle"
-               href="https://www.linkedin.com"
-               ><i class="fab fa-linkedin-in"></i
-             ></a>
-           </div>
-         </div>
-       </div>
-     </div>
+ <div class="container-fluid bg-dark text-white-50 footer pt-0 mt-0">
+   <div class="container py-5 d-flex justify-content-center">
      <div class="row g-5">
-       <div class="col-lg-3 col-md-6">
-         <div class="footer-item">
-           <h4 class="text-light mb-3">Why People Like us!</h4>
-           <p class="mb-4">We are the best</p>
-           <a
-             href=""
-             class="btn border-secondary py-2 px-4 rounded-pill text-primary"
-             >Read More</a
-           >
+       <div class="col-md-6 my-auto text-center text-md-end text-white pb-2">
+         <div class="footer-item py-0 ">
+          <h4 class="text-primary mb-0 pt-5">Furry Friends</h4>
+           <p class="mb-1">We are the best</p>
+           <a href="{% url 'about-view' %}" class="btn border-secondary py-2 px-4 rounded-pill text-primary">About Us</a>
          </div>
        </div>
-       <div class="col-lg-3 col-md-6">
-         <div class="d-flex flex-column text-start footer-item">
-           <h4 class="text-light mb-3">Shop Info</h4>
-           <a class="btn-link" href="./about.html">About Us</a>
-           <a class="btn-link" href="">Contact Us</a>
-           <a class="btn-link" href=".terms.html">Privacy Policy</a>
-           <a class="btn-link" href="./terms.html">Terms & Condition</a>
-           <!-- <a class="btn-link" href="">Return Policy</a>
-           <a class="btn-link" href="">FAQs & Help</a> -->
-         </div>
-       </div>
-       <div class="col-lg-3 col-md-6">
-         <div class="d-flex flex-column text-start footer-item">
-           <h4 class="text-light mb-3">Account</h4>
-           <a class="btn-link" href="./profile.html">My Account</a>
-           <a class="btn-link" href="./shop.html">Shop details</a>
-           <a class="btn-link" href="./cart.html">Shopping Cart</a>
-           <a class="btn-link" href="">Wishlist</a>
-           <!-- <a class="btn-link" href="">Order History</a>
-           <a class="btn-link" href="">International Orders</a> -->
-         </div>
-       </div>
-       <div class="col-lg-3 col-md-6">
-         <div class="footer-item">
-           <h4 class="text-light mb-3">Contact</h4>
-           <p>Address: Nairobi, Kenya</p>
-           <p>Email: pethaven@gmail.com</p>
-           <p>Phone: +254727283082</p>
-           <p>Payment Accepted</p>
-           <img src="{% static 'img/payment.png' %}" class="img-fluid" alt="" />
+       <div class="col-md-6 my-auto text-center text-md-end text-white">
+         <div class="footer-item pt-4 pb-0">
+           <h4 class="text-primary mb-3">Contact</h4>
+           <p class="py-0 mt-0 mb-0">furryfriends@gmail.com</p>
+           <p class="py-0 mt-0 mb-0">+254727620048</p>
+           <p class="py-0 mt-0 mb-0">Nairobi, Kenya</p>
          </div>
        </div>
      </div>
@@ -377,18 +328,18 @@
  <!-- Footer End -->
 
  <!-- Copyright Start -->
- <div class="container-fluid copyright bg-dark py-4">
+ <div class="container-fluid copyright bg-dark py-3 mt-0">
    <div class="container">
      <div class="row">
        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
          <span class="text-light"
-           ><a href="#"
+           ><a href="{% url 'home-view' %}"
              ><i class="fas fa-copyright text-light me-2"></i>Furry Friends</a
            >, All right reserved.</span
          >
        </div>
        <div class="col-md-6 my-auto text-center text-md-end text-white">
-         Coded By
+         Devoloped By
          <a
            class="border-bottom"
            href="https://www.linkedin.com/in/joan-waithira/"
@@ -404,5 +355,20 @@
      </div>
    </div>
  </div>
+ <script>
+    document.getElementById('searchBtn').addEventListener('click', function () {
+      var searchText = document.getElementById('table_filter').value;
+      var radioValue = document.querySelector('input[name="radios"]:checked').value;
+      var searchBtnValue = document.getElementById('searchBtn').value;
+
+    
+      document.getElementById('hiddenSearchText').value = searchText;
+      document.getElementById('hiddenRadioValue').value = radioValue;
+      document.getElementById('hiddenSearchBtnValue').value = searchBtnValue;
+
+      
+      document.getElementById('hiddenForm').submit();
+  });
+ </script>
  <!-- Copyright End -->
 {% endblock %}

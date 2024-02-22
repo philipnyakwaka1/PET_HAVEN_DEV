@@ -2,80 +2,80 @@
 {% load static %}
 
 {% block content %}
-<!-- Navbar Start -->
-   
-<!-- Navbar End -->
-
 <!-- Pet form -->
-<div>
-  <!-- <h2>Tell us about your pet</h2> -->
-  <h1>Tell us about your pet</h1>
+
+<h1>Tell us about your pet</h1>
+<!--Draft-->
+<div class="ml-auto mr-auto pt-1 mb-3">
   <form class="pet-info" method="post" action="{% url 'list-pet' %}" enctype="multipart/form-data">
     {% csrf_token %}
-    <label for="specie">Animal Type<span style="color: red;">*</span>:</label>
-    <select name="specie" id="specie" required>
-      <option value="dog">dog</option>
-      <option value="cat">cat</option>
-      <option value="bird">bird</option>
-      <option value="rabbit">rabbit</option>
-    </select>
-    <br />
-    <label for="breed">Breed<span style="color: red;">*</span>:</label>
-    <input type="text" name="breed" id="breed" required />
-    <br />
-    <label for="name">Pet Name<span style="color: red;">*</span>:</label>
-    <input type="text" name="name" id="name" required />
-    <br />
-
-    <label for="age">Age of pet<span style="color: red;">*</span>:</label>
-    <input type="number" name="age" id="age" required />
-    <br />
-
-    <label for="gender">Gender:</label>
-    <select name="gender" id="gender">
-      <option value="male">male</option>
-      <option value="female">female</option>
-      <option value="none">prefer not to say</option>
-    </select>
-    <br />
-
-    <label for="price">Price in Ksh<span style="color: red;">*</span>:</label>
-    <input type="number" name="price" id="price" required />
-    <br />
-
-    <label for="size">Size<span style="color: red;">*</span>:</label>
-    <input type="text" name="size" id="size" required/>
-    <br />
-
-    <label for="weight">Weight<span style="color: red;">*</span>:</label>
-    <input type="number" name="weight" id="weight" required />
-    <br />
-
-    <label for="color">Color<span style="color: red;">*</span>:</label>
-    <input type="text" name="color" id="color" required />
-    <br />
-    <label for="description">Description<span style="color: red;">*</span>:</label>
-    <textarea name="description" rows="4" id="description" required></textarea>
-    <br />
-
-    <label for="availability">Availability<span style="color: red;">*</span>:</label>
-    <input type="text" name="availability" id="availability" required />
-    <br />
-
-    <label for="date_added">Date Added<span style="color: red;">*</span>:</label>
-    <input type="date" name="date_added" id="date_added" required />
-    <br />
-
-    <label for="location">Location<span style="color: red;">*</span>:</label>
-    <input type="text" name="location" id="location" required />
-    <br />
-    <label for="image">Image<span style="color: red;">*</span>:</label>
-    <input type="file" name="image" accept="image/*" id="image" required />
-    <br />
-
-    <input class="btn btn-primary mt-5 p-3" type="submit" value="Submit" name="sell_pet" />
+    <div class="mb-3">
+      <label for="specie" class="form-label">Animal type<span>*</span></label>
+      <select name="specie" class="form-control" id="specie" required>
+        <option value="dog">dog</option>
+        <option value="cat">cat</option>
+        <option value="bird">bird</option>
+        <option value="rabbit">rabbit</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="breed" class="form-label">Animal breed<span>*</span></label>
+      <input type="text" name="breed" class="form-control" id="breed" placeholder="Enter the breed of your pet" required>
+    </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">Pet name<span>*</span></label>
+      <input type="text" name="name" class="form-control" id="name" placeholder="Enter the name of your pet" required>
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Picture<span>*</span></label>
+      <input type="file" name="image" accept="image/*" class="form-control" id="image" required>
+    </div>
+    <div class="mb-3">
+      <label for="gender" class="form-label">Pet gender<span>*</span></label>
+      <select name="gender" class="form-control" id="gender" required>
+        <option value="dog">male</option>
+        <option value="cat">female</option>
+        <option value="bird">prefer not to sat</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="size" class="form-label">Pet size<span>*</span></label>
+      <input type="text" name="size" class="form-control" id="size" placeholder="Enter the size of your pet" required>
+    </div>
+    <div class="mb-3">
+      <label for="color" class="form-label">Pet color<span>*</span></label>
+      <input type="text" name="color" class="form-control" id="color" placeholder="Enter the color of your pet" required>
+    </div>
+    <div class="mb-3">
+      <label for="location" class="form-label">Pet location<span>*</span></label>
+      <input type="text" name="location" class="form-control" id="location" placeholder="Enter the location of your pet">
+    </div>
+    <div class="mb-3">
+      <label for="availability" class="form-label">Pet availability<span>*</span></label>
+      <input type="text" name="availability" class="form-control" id="availability">
+    </div>
+    <div class="mb-3">
+      <label for="date_added" class="form-label">Date Added<span>*</span></label>
+      <input type="date" name="date_added" class="form-control" id="date_added">
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Pet description<span>*</span></label>
+      <textarea type="text" name="description" rows="4" id="description" style="width: 100%;" placeholder="Tell us something about your pet" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="age" class="form-label">Pet age<span>*</span></label>
+      <input type="number" name="age" class="form-control" id="age" style="width: 100%;" placeholder="Enter the age of your pet" required>
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Price in Ksh<span>*</span></label>
+      <input type="number" name="price" class="form-control" id="price" style="width: 100%;" placeholder="Enter the price of your pet" required>
+    </div>
+    <div class="mb-3">
+      <label for="weight" class="form-label">Pet weight<span>*</span></label>
+      <input type="number" name="weight" class="form-control" id="weight" style="width: 100%;" placeholder="Enter the weight of your pet" required>
+    </div>
+    <input class="btn btn-primary mt-1 p-3" type="submit" value="Submit" name="sell_pet" />
   </form>
 </div>
-<!-- End pet form -->
-
+<!--End of Draft-->
 {% endblock %}
