@@ -23,6 +23,7 @@
     background-clip: border-box;
     border: 0 solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
+    padding: 2px;
   }
 
   .card-body {
@@ -60,7 +61,7 @@
   <form method="POST">
     {% csrf_token %}
     <fieldset>
-      <legend>Join Today</legend>
+      <legend style="text-align: center">Join Today</legend>
       <hr />
       {{ form | crispy }}
     </fieldset>
@@ -72,7 +73,9 @@
   <div>
     <small
       >Already have an Account?
-      <a class="btn btn-primary" href="{% url 'login' %}">Sign In</a></small
+      <a class="btn btn-primary mb-2" href="{% url 'login' %}"
+        >Sign In</a
+      ></small
     >
   </div>
 </div>
